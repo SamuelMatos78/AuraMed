@@ -1,0 +1,38 @@
+/* Complementos exclusivos da página de quartos; o style.css permanece intacto. */
+.quartos-page .quartos-lista {
+    gap: 16px;
+    margin-top: 20px;
+    margin-bottom: 16px;
+}
+
+.quartos-page .quarto-card .metric-card__content {
+    min-width: 0;
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.quartos-page .quarto-card .metric-card__content > span:first-child {
+    min-height: 0;
+    margin-bottom: 10px;
+}
+
+.quartos-page .quarto-card .status-pill {
+    display: inline-flex;
+    min-height: 0;
+    max-width: none;
+    color: #237d5d;
+    overflow: visible;
+    font-size: 0.72rem;
+    text-overflow: clip;
+    white-space: nowrap;
+}
+
+.quartos-page .quarto-card .status-pill--waiting {
+    color: #ae642f;
+}
+
+.quartos-page .today-badge:focus-visible,
+.quartos-page .logout-link:focus-visible {
+    outline: 2px solid var(--primary-700);
+    outline-offset: 4px;
+}
