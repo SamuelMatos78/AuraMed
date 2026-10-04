@@ -1,12 +1,12 @@
 package com.auramed.auramed.service;
 
+import com.auramed.auramed.exception.*;
 import com.auramed.auramed.model.*;
 import com.auramed.auramed.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @Service
 public class InternacaoService {
@@ -23,19 +23,19 @@ public class InternacaoService {
     @Transactional
     public Internacao internar(Long pacienteId, Long profissionalId, Long quartoId,
                               LocalDateTime entrada, LocalDateTime previstaAlta, String observacoes) {
-        if (entrada == null) throw new IllegalArgumentException("Data de entrada é obrigatória");
+        if (entrada == null) throw new DadosInvalidosException("Data de entrada é obrigatória");
         if (previstaAlta == null || previstaAlta.isBefore(entrada))
-            throw new IllegalArgumentException("Alta prevista anterior à entrada");
+            throw new DadosInvalidosException("Alta prevista anterior à entrada");
         Paciente paciente = pacientes.buscarComBloqueio(Validacao.id(pacienteId, "Paciente"))
-            .orElseThrow(() -> new NoSuchElementException("Paciente não encontrado"));
+            .orElseThrow(() -> new RecursoNaoEncontradoException("Paciente não encontrado"));
         if (repository.existsByPacienteIdAndDataAltaIsNull(pacienteId))
-            throw new IllegalStateException("Paciente já possui internação ativa");
+            throw new RegraDeNegocioException("Paciente já possui internação ativa");
         ProfissionalSaude profissional = profissionais.findById(Validacao.id(profissionalId, "Profissional"))
-            .orElseThrow(() -> new NoSuchElementException("Profissional não encontrado"));
+            .orElseThrow(() -> new RecursoNaoEncontradoException("Profissional não encontrado"));
         Quarto quarto = quartos.buscarComBloqueio(Validacao.id(quartoId, "Quarto"))
-            .orElseThrow(() -> new NoSuchElementException("Quarto não encontrado"));
+            .orElseThrow(() -> new RecursoNaoEncontradoException("Quarto não encontrado"));
         long ocupacao = repository.countByQuartoIdAndDataAltaIsNull(quartoId);
-        if (ocupacao >= quarto.getCapacidadeMaxima()) throw new IllegalStateException("Quarto sem vagas");
+        if (ocupacao >= quarto.getCapacidadeMaxima()) throw new RegraDeNegocioException("Quarto sem vagas");
         Internacao internacao = repository.save(new Internacao(paciente, profissional, quarto, entrada, previstaAlta, observacoes));
         quarto.setSituacao(ocupacao + 1 >= quarto.getCapacidadeMaxima() ? SituacaoQuarto.OCUPADO : SituacaoQuarto.DISPONIVEL);
         return internacao;
@@ -43,25 +43,28 @@ public class InternacaoService {
 
     @Transactional
     public Internacao darAlta(Long id, LocalDateTime dataAlta, String observacoes) {
-        if (dataAlta == null) throw new IllegalArgumentException("Data da alta é obrigatória");
+        if (dataAlta == null) throw new DadosInvalidosException("Data da alta é obrigatória");
         Internacao internacao = repository.buscarComBloqueio(Validacao.id(id, "Internação"))
-            .orElseThrow(() -> new NoSuchElementException("Internação não encontrada"));
-        if (internacao.getDataAlta() != null) throw new IllegalStateException("Internação já encerrada");
-        if (dataAlta.isBefore(internacao.getDataEntrada())) throw new IllegalArgumentException("Alta anterior à entrada");
+            .orElseThrow(() -> new RecursoNaoEncontradoException("Internação não encontrada"));
+        if (internacao.getDataAlta() != null) throw new RegraDeNegocioException("Internação já encerrada");
+        if (dataAlta.isBefore(internacao.getDataEntrada())) throw new DadosInvalidosException("Alta anterior à entrada");
         Quarto quarto = quartos.buscarComBloqueio(internacao.getQuarto().getId())
-            .orElseThrow(() -> new NoSuchElementException("Quarto não encontrado"));
+            .orElseThrow(() -> new RecursoNaoEncontradoException("Quarto não encontrado"));
         long ocupacao = repository.countByQuartoIdAndDataAltaIsNull(quarto.getId());
         internacao.setDataAlta(dataAlta);
-        internacao.setObservacoes(observacoes);
+        if (observacoes != null) internacao.setObservacoes(observacoes);
         quarto.setSituacao(ocupacao - 1 >= quarto.getCapacidadeMaxima() ? SituacaoQuarto.OCUPADO : SituacaoQuarto.DISPONIVEL);
         return internacao;
     }
 
     @Transactional(readOnly = true)
     public Internacao buscar(Long id) {
-        return repository.findById(Validacao.id(id, "Internação")).orElseThrow(() -> new NoSuchElementException("Internação não encontrada"));
+        return repository.findById(Validacao.id(id, "Internação")).orElseThrow(() -> new RecursoNaoEncontradoException("Internação não encontrada"));
     }
 
     @Transactional(readOnly = true)
     public List<Internacao> listar() { return repository.findAll(); }
+
+    @Transactional(readOnly = true)
+    public List<Internacao> listarAtivas() { return repository.findByDataAltaIsNullOrderByDataEntrada(); }
 }

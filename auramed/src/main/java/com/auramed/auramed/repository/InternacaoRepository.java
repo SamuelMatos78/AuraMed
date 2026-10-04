@@ -13,6 +13,10 @@ public interface InternacaoRepository extends JpaRepository<Internacao, Long> {
     long countByQuartoIdAndDataAltaIsNull(Long quartoId);
     boolean existsByPacienteIdAndDataAltaIsNull(Long pacienteId);
     List<Internacao> findByPacienteIdOrderByDataEntradaDesc(Long pacienteId);
+    List<Internacao> findByDataAltaIsNullOrderByDataEntrada();
+    boolean existsByPacienteId(Long pacienteId);
+    boolean existsByProfissionalId(Long profissionalId);
+    boolean existsByQuartoId(Long quartoId);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select i from Internacao i where i.id = :id")

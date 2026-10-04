@@ -14,6 +14,9 @@ import java.util.Optional;
 public interface ConsultaRepository extends JpaRepository<Consulta, Long> {
     boolean existsByProfissionalIdAndDataHoraAndStatus(Long profissionalId, LocalDateTime dataHora, StatusConsulta status);
     List<Consulta> findByPacienteIdAndStatusOrderByDataHoraDesc(Long pacienteId, StatusConsulta status);
+    List<Consulta> findByProfissionalIdAndDataHoraBetweenOrderByDataHora(Long profissionalId, LocalDateTime inicio, LocalDateTime fim);
+    boolean existsByPacienteId(Long pacienteId);
+    boolean existsByProfissionalId(Long profissionalId);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select c from Consulta c where c.id = :id")
