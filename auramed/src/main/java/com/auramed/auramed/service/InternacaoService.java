@@ -5,8 +5,10 @@ import com.auramed.auramed.repository.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 @Service
 public class InternacaoService {
@@ -64,4 +66,15 @@ public class InternacaoService {
 
     @Transactional(readOnly = true)
     public List<Internacao> listar() { return repository.findAll(); }
+
+    @Transactional(readOnly = true)
+    public List<InternacaoResumo> listarResumos() {
+        return repository.listarComDetalhes().stream().map(InternacaoResumo::de).toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<Paciente> pacientesDisponiveis() {
+        Set<Long> internados = new HashSet<>(repository.idsPacientesInternados());
+        return pacientes.findAll().stream().filter(p -> !internados.contains(p.getId())).toList();
+    }
 }
