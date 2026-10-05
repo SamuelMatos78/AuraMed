@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Consulta de pacientes do sistema hospitalar AuraMed">
+    <title>AuraMed | Pacientes</title>
+    <link rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="/css/pacientes.css" th:href="@{/css/pacientes.css}">
+</head>
+<body class="pacientes-page">
+<div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="/home" th:href="@{/home}" aria-label="AuraMed - Página inicial">
+            <span class="brand__mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                    <path d="M9.5 3.5h5v6h6v5h-6v6h-5v-6h-6v-5h6z"/>
+                </svg>
+            </span>
+            <span>
+                <strong>AuraMed</strong>
+                <small>Gestão Hospitalar</small>
+            </span>
+        </a>
+
+        <nav class="main-nav">
+            <p class="nav-label">Menu principal</p>
+            <ul>
+                <li>
+                    <a class="nav-link" href="/home" th:href="@{/home}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"/>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link is-active" href="/pacientes" th:href="@{/pacientes}" aria-current="page">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3Zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3Zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13Zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5Z"/>
+                        </svg>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <span class="nav-link nav-link--disabled" aria-disabled="true" title="Página ainda não disponível">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 8a3 3 0 1 0-2.83-4H7.83A3 3 0 1 0 5 8v8a3 3 0 1 0 2.83 4h8.34A3 3 0 1 0 19 16V8Zm-3 10H8v-.01A3 3 0 0 0 7 16V8c.37-.13.71-.34 1-.59h8c.29.25.63.46 1 .59v8c-.37.13-.71.34-1 .59V18Z"/>
+                        </svg>
+                        <span>Profissionais</span>
+                    </span>
+                </li>
+                <li>
+                    <span class="nav-link nav-link--disabled" aria-disabled="true" title="Página ainda não disponível">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8h16v8Zm0-10H4V7a1 1 0 0 1 1-1h1v2h2V6h8v2h2V6h1a1 1 0 0 1 1 1v2Z"/>
+                        </svg>
+                        <span>Consultas</span>
+                    </span>
+                </li>
+                <li>
+                    <a class="nav-link" href="/internacoes" th:href="@{/internacoes}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 7h-8v6H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4ZM7 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6-3h6a2 2 0 0 1 2 2v2h-8V9Z"/>
+                        </svg>
+                        <span>Internações</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="/quartos" th:href="@{/quartos}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 9V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4a3 3 0 0 0-2 2.82V21h2v-2h16v2h2v-9.18A3 3 0 0 0 20 9ZM6 5h12v4h-1V7H7v2H6V5Zm14 12H4v-5.18A1 1 0 0 1 5 11h14a1 1 0 0 1 1 1v5Z"/>
+                        </svg>
+                        <span>Quartos</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar__status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>
+                <strong>Ambiente acadêmico</strong>
+                <small>Consulta de pacientes</small>
+            </span>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="topbar">
+            <div class="topbar__title">
+                <span class="eyebrow">Painel administrativo</span>
+                <strong>Sistema Hospitalar</strong>
+            </div>
+
+            <div class="user-area">
+                <span class="avatar" aria-hidden="true">AD</span>
+                <span class="user-details">
+                    <strong>Administrador</strong>
+                    <small>Gestão geral</small>
+                </span>
+                <a class="logout-link" href="/login" th:href="@{/login}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 17v2H5V5h5v2h2V3H3v18h9v-4h-2Zm5.59-9.41L17 9l2 2h-9v2h9l-2 2-1.41 1.41L20 12l-4.41-4.41ZM17 9Z"/>
+                    </svg>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <section class="welcome" aria-labelledby="pacientes-title">
+                <div>
+                    <p class="eyebrow">Atendimento hospitalar</p>
+                    <h1 id="pacientes-title">Pacientes</h1>
+                    <p>Consulte a identificação e os dados de contato dos pacientes.</p>
+                </div>
+                <a class="today-badge" href="/home" th:href="@{/home}">Voltar ao dashboard</a>
+            </section>
+
+            <section class="appointments-panel pacientes-panel" aria-labelledby="lista-pacientes-title">
+                <header class="panel-header">
+                    <div>
+                        <p class="eyebrow">Consulta</p>
+                        <h2 id="lista-pacientes-title">Pacientes cadastrados</h2>
+                    </div>
+                    <span class="appointment-count" th:if="${pacientes != null}" th:text="${#lists.size(pacientes) + (#lists.size(pacientes) == 1 ? ' paciente' : ' pacientes')}">Lista de pacientes</span>
+                </header>
+
+                <!-- O controller ainda precisa fornecer a coleção "pacientes" ao model. -->
+                <div class="pacientes-estado" th:if="${pacientes == null}">
+                    <div>
+                        <h3>Integração pendente</h3>
+                        <p>A lista de pacientes ainda não foi conectada a esta página. Os cadastros serão exibidos quando os dados estiverem disponíveis.</p>
+                    </div>
+                </div>
+
+                <div class="pacientes-estado" th:if="${pacientes != null and #lists.isEmpty(pacientes)}">
+                    <div>
+                        <h3>Nenhum paciente cadastrado</h3>
+                        <p>Não há pacientes para exibir no momento.</p>
+                    </div>
+                </div>
+
+                <div class="pacientes-lista" th:if="${pacientes != null and not #lists.isEmpty(pacientes)}">
+                    <p class="pacientes-orientacao">Selecione um paciente para ver seus dados. O CPF aparece parcialmente oculto.</p>
+                    <details class="paciente-card" th:each="paciente : ${pacientes}">
+                        <summary class="paciente-resumo">
+                            <span class="patient-avatar patient-avatar--blue" aria-hidden="true" th:text="${#strings.substring(paciente.nome, 0, 1)}">P</span>
+                            <span class="paciente-identificacao">
+                                <strong th:text="${paciente.nome}">Nome do paciente</strong>
+                                <span th:text="${'CPF: ***.***.' + #strings.substring(paciente.cpf, 6, 9) + '-**'}">CPF protegido</span>
+                            </span>
+                            <span class="paciente-acao" aria-hidden="true">
+                                <span>Ver dados</span>
+                                <svg viewBox="0 0 24 24"><path d="m7 10 5 5 5-5z"/></svg>
+                            </span>
+                        </summary>
+                        <dl class="paciente-dados">
+                            <div>
+                                <dt>Data de nascimento</dt>
+                                <dd th:text="${#temporals.format(paciente.dataNascimento, 'dd/MM/yyyy')}">Data de nascimento</dd>
+                            </div>
+                            <div>
+                                <dt>Telefone</dt>
+                                <dd th:text="${paciente.telefone}">Telefone</dd>
+                            </div>
+                            <div>
+                                <dt>E-mail</dt>
+                                <dd th:text="${paciente.email}">E-mail</dd>
+                            </div>
+                            <div>
+                                <dt>Endereço</dt>
+                                <dd th:text="${paciente.endereco}">Endereço</dd>
+                            </div>
+                        </dl>
+                    </details>
+                </div>
+            </section>
+        </main>
+    </div>
+</div>
+</body>
+</html>

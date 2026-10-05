@@ -1,0 +1,171 @@
+/* Complementos exclusivos de pacientes; não altera o CSS compartilhado. */
+.pacientes-page .pacientes-panel {
+    margin-top: 0;
+    padding-bottom: 24px;
+}
+
+.pacientes-page .appointment-count {
+    display: inline-block;
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.pacientes-page .pacientes-estado {
+    margin-top: 22px;
+    padding: 24px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--primary-50);
+}
+
+.pacientes-page .pacientes-estado h3 {
+    margin: 0 0 10px;
+    font-size: 1rem;
+}
+
+.pacientes-page .pacientes-estado p,
+.pacientes-page .pacientes-orientacao {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    line-height: 1.65;
+}
+
+.pacientes-page .pacientes-lista {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.pacientes-page .pacientes-orientacao {
+    margin-bottom: 6px;
+}
+
+.pacientes-page .paciente-card {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.pacientes-page .paciente-resumo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 18px;
+    cursor: pointer;
+    list-style: none;
+}
+
+.pacientes-page .paciente-resumo::-webkit-details-marker {
+    display: none;
+}
+
+.pacientes-page .paciente-resumo:hover,
+.pacientes-page .paciente-card[open] > .paciente-resumo {
+    background: var(--primary-50);
+}
+
+.pacientes-page .paciente-identificacao {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.pacientes-page .paciente-identificacao strong,
+.pacientes-page .paciente-identificacao > span {
+    display: block;
+}
+
+.pacientes-page .paciente-identificacao strong {
+    font-size: 0.9rem;
+    line-height: 1.45;
+}
+
+.pacientes-page .paciente-identificacao > span {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+.pacientes-page .paciente-acao {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 5px;
+    color: var(--primary-700);
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.pacientes-page .paciente-acao svg {
+    width: 20px;
+    height: 20px;
+}
+
+.pacientes-page .paciente-card[open] .paciente-acao svg {
+    transform: rotate(180deg);
+}
+
+.pacientes-page .paciente-dados {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin: 0;
+    padding: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.pacientes-page .paciente-dados > div {
+    min-width: 0;
+}
+
+.pacientes-page .paciente-dados dt {
+    margin-bottom: 6px;
+    color: var(--text-muted);
+    font-size: 0.73rem;
+}
+
+.pacientes-page .paciente-dados dd {
+    margin: 0;
+    overflow-wrap: anywhere;
+    font-size: 0.85rem;
+    line-height: 1.5;
+}
+
+.pacientes-page .paciente-resumo:focus-visible {
+    outline: 2px solid var(--primary-700);
+    outline-offset: -3px;
+}
+
+.pacientes-page .today-badge:focus-visible,
+.pacientes-page .logout-link:focus-visible {
+    outline: 2px solid var(--primary-700);
+    outline-offset: 4px;
+}
+
+@media (max-width: 580px) {
+    .pacientes-page .paciente-resumo {
+        gap: 10px;
+        padding: 16px 12px;
+    }
+
+    .pacientes-page .paciente-dados {
+        grid-template-columns: 1fr;
+        padding: 18px 12px;
+    }
+
+    .pacientes-page .paciente-acao > span {
+        display: none;
+    }
+
+    .pacientes-page .panel-header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .pacientes-page .pacientes-estado {
+        padding: 20px 16px;
+    }
+}
