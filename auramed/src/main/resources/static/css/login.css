@@ -1,0 +1,264 @@
+/* Estilos exclusivos do login; preserva o style.css compartilhado. */
+.login-page .login-shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    min-height: 100svh;
+}
+
+.login-page .login-apresentacao {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 48px;
+    padding: clamp(32px, 5vw, 72px);
+    color: #fff;
+    background:
+        radial-gradient(circle at 15% 90%, rgba(52, 163, 174, 0.22), transparent 40%),
+        linear-gradient(180deg, #123f5b 0%, #102f47 100%);
+}
+
+.login-page .login-brand {
+    padding: 0;
+    border: 0;
+}
+
+.login-page .login-intro {
+    max-width: 520px;
+}
+
+.login-page .login-eyebrow {
+    margin: 0;
+    color: #a9dce3;
+    font-size: 0.73rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+
+.login-page .login-intro h2 {
+    margin: 20px 0;
+    font-size: clamp(2.2rem, 4vw, 3.6rem);
+    line-height: 1.13;
+    letter-spacing: -0.04em;
+}
+
+.login-page .login-intro > p:last-of-type {
+    margin: 0;
+    color: #c1d4de;
+    font-size: 1rem;
+    line-height: 1.65;
+}
+
+.login-page .login-modulos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin: 30px 0 0;
+    padding: 0;
+    list-style: none;
+}
+
+.login-page .login-modulos li {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.06);
+    font-size: 0.79rem;
+}
+
+.login-page .login-modulos svg {
+    width: 18px;
+    height: 18px;
+    color: #a9dce3;
+}
+
+.login-page .login-academico {
+    margin: 0;
+    color: #c1d4de;
+    font-size: 0.73rem;
+}
+
+.login-page .login-acesso {
+    display: grid;
+    align-content: center;
+    justify-items: center;
+    min-width: 0;
+    padding: 48px clamp(24px, 5vw, 72px);
+}
+
+.login-page .login-card {
+    width: min(440px, 100%);
+    padding: 32px;
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+}
+
+.login-page .login-cabecalho h1 {
+    margin: 12px 0 10px;
+    color: var(--text);
+    font-size: clamp(1.65rem, 2.5vw, 2rem);
+    letter-spacing: -0.04em;
+}
+
+.login-page .login-cabecalho > p:last-child {
+    margin: 0;
+    color: #5b6b75;
+    font-size: 0.87rem;
+    line-height: 1.6;
+}
+
+.login-page .login-aviso {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin: 24px 0;
+    padding: 14px;
+    border: 1px solid #e8d8ba;
+    border-radius: 10px;
+    background: #fff7e9;
+    color: #775a28;
+}
+
+.login-page .login-aviso svg {
+    width: 18px;
+    height: 18px;
+    flex: 0 0 18px;
+    margin-top: 2px;
+}
+
+.login-page .login-aviso strong {
+    font-size: 0.77rem;
+}
+
+.login-page .login-aviso p {
+    margin: 6px 0 0;
+    font-size: 0.74rem;
+    line-height: 1.5;
+}
+
+.login-page .login-form fieldset {
+    display: grid;
+    gap: 20px;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.login-page .login-campo {
+    display: grid;
+    gap: 8px;
+}
+
+.login-page .login-campo label {
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.login-page .login-campo input {
+    width: 100%;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px 14px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--surface);
+    color: var(--text);
+    font: inherit;
+    font-size: 0.88rem;
+}
+
+.login-page .login-campo input:disabled {
+    background: var(--background);
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+.login-page .login-campo input::placeholder {
+    color: var(--text-muted);
+    opacity: 1;
+}
+
+.login-page .login-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 12px 16px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--primary-700);
+    color: #fff;
+    font: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+}
+
+.login-page .login-submit svg {
+    width: 18px;
+    height: 18px;
+}
+
+.login-page .login-submit:disabled {
+    background: #667b88;
+    cursor: not-allowed;
+}
+
+.login-page .login-campo input:focus-visible,
+.login-page .login-submit:focus-visible {
+    outline: 2px solid var(--primary-700);
+    outline-offset: 3px;
+}
+
+.login-page .login-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+}
+
+@media (max-width: 820px) {
+    .login-page .login-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .login-page .login-apresentacao {
+        gap: 24px;
+        padding: 28px;
+    }
+
+    .login-page .login-intro h2 {
+        margin: 12px 0;
+        font-size: 1.75rem;
+    }
+
+    .login-page .login-eyebrow,
+    .login-page .login-modulos,
+    .login-page .login-academico {
+        display: none;
+    }
+
+    .login-page .login-acesso {
+        padding: 30px 20px;
+    }
+}
+
+@media (max-width: 420px) {
+    .login-page .login-apresentacao {
+        padding: 24px 20px;
+    }
+
+    .login-page .login-card {
+        padding: 24px 20px;
+        border-radius: 16px;
+    }
+}
