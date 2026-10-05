@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="1460" viewBox="0 0 1440 1460" role="img" aria-labelledby="title desc">
+<title id="title">AuraMed — Diagrama de classes do domínio</title><desc id="desc">Classes Paciente, ProfissionalSaude, Quarto, Consulta, Internacao, HistoricoMedico e os enumeradores StatusConsulta e SituacaoQuarto, com seus atributos e associações.</desc>
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto"><path d="M1 1 L9 5 L1 9" fill="none" stroke="#476a80" stroke-width="1.4"/></marker></defs>
+<rect width="1440" height="1460" fill="#f4f7fa"/>
+<style>text{font-family:Arial,sans-serif;fill:#172b3a}.title{font-size:29px;font-weight:bold}.sub{font-size:15px;fill:#6d7e8b}.name{font-size:20px;font-weight:bold;fill:#fff}.attr{font-size:15px}.kind{font-size:13px;fill:#dff3f7}.label{font-size:14px;fill:#31576e}.note{font-size:16px;fill:#476a80}</style>
+<text class="title" x="80" y="48">AuraMed · Diagrama de classes</text>
+<text class="sub" x="80" y="78">Modelo de domínio baseado nas classes Java do projeto · Programação Modular</text>
+<g><rect x="80" y="110" width="330" height="307" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M90 110 H400 Q410 110 410 120 V156 H80 V120 Q80 110 90 110" fill="#164b6b"/>
+<text class="name" x="245.0" y="141" text-anchor="middle">Paciente</text>
+<text class="attr" x="96" y="183">- id: Long</text>
+<text class="attr" x="96" y="208">- nome: String</text>
+<text class="attr" x="96" y="233">- cpf: String</text>
+<text class="attr" x="96" y="258">- dataNascimento: LocalDate</text>
+<text class="attr" x="96" y="283">- telefone: String</text>
+<text class="attr" x="96" y="308">- endereco: String</text>
+<text class="attr" x="96" y="333">- email: String</text>
+<path d="M80 349 H410" stroke="#d7e3eb"/>
+<text class="attr" x="96" y="376">+ getNome(): String</text>
+<text class="attr" x="96" y="401">+ setNome(nome: String): void</text>
+</g>
+<g><rect x="540" y="110" width="330" height="282" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M550 110 H860 Q870 110 870 120 V156 H540 V120 Q540 110 550 110" fill="#164b6b"/>
+<text class="name" x="705.0" y="141" text-anchor="middle">ProfissionalSaude</text>
+<text class="attr" x="556" y="183">- id: Long</text>
+<text class="attr" x="556" y="208">- nome: String</text>
+<text class="attr" x="556" y="233">- registroProfissional: String</text>
+<text class="attr" x="556" y="258">- especialidade: String</text>
+<text class="attr" x="556" y="283">- telefone: String</text>
+<text class="attr" x="556" y="308">- email: String</text>
+<path d="M540 324 H870" stroke="#d7e3eb"/>
+<text class="attr" x="556" y="351">+ getRegistroProfissional(): String</text>
+<text class="attr" x="556" y="376">+ setEspecialidade(valor: String): void</text>
+</g>
+<g><rect x="1000" y="110" width="330" height="257" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M1010 110 H1320 Q1330 110 1330 120 V156 H1000 V120 Q1000 110 1010 110" fill="#164b6b"/>
+<text class="name" x="1165.0" y="141" text-anchor="middle">Quarto</text>
+<text class="attr" x="1016" y="183">- id: Long</text>
+<text class="attr" x="1016" y="208">- numero: String</text>
+<text class="attr" x="1016" y="233">- andar: Integer</text>
+<text class="attr" x="1016" y="258">- capacidadeMaxima: Integer</text>
+<text class="attr" x="1016" y="283">- situacao: SituacaoQuarto</text>
+<path d="M1000 299 H1330" stroke="#d7e3eb"/>
+<text class="attr" x="1016" y="326">+ getCapacidadeMaxima(): Integer</text>
+<text class="attr" x="1016" y="351">+ setSituacao(valor: SituacaoQuarto): void</text>
+</g>
+<g><rect x="80" y="570" width="360" height="307" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M90 570 H430 Q440 570 440 580 V616 H80 V580 Q80 570 90 570" fill="#164b6b"/>
+<text class="name" x="260.0" y="601" text-anchor="middle">Consulta</text>
+<text class="attr" x="96" y="643">- id: Long</text>
+<text class="attr" x="96" y="668">- paciente: Paciente</text>
+<text class="attr" x="96" y="693">- profissional: ProfissionalSaude</text>
+<text class="attr" x="96" y="718">- dataHora: LocalDateTime</text>
+<text class="attr" x="96" y="743">- motivo: String</text>
+<text class="attr" x="96" y="768">- observacoesMedicas: String</text>
+<text class="attr" x="96" y="793">- status: StatusConsulta</text>
+<path d="M80 809 H440" stroke="#d7e3eb"/>
+<text class="attr" x="96" y="836">+ setStatus(valor: StatusConsulta): void</text>
+<text class="attr" x="96" y="861">+ setObservacoesMedicas(valor: String): void</text>
+</g>
+<g><rect x="810" y="570" width="520" height="357" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M820 570 H1320 Q1330 570 1330 580 V616 H810 V580 Q810 570 820 570" fill="#164b6b"/>
+<text class="name" x="1070.0" y="601" text-anchor="middle">Internacao</text>
+<text class="attr" x="826" y="643">- id: Long</text>
+<text class="attr" x="826" y="668">- paciente: Paciente</text>
+<text class="attr" x="826" y="693">- profissional: ProfissionalSaude</text>
+<text class="attr" x="826" y="718">- quarto: Quarto</text>
+<text class="attr" x="826" y="743">- dataEntrada: LocalDateTime</text>
+<text class="attr" x="826" y="768">- dataPrevistaAlta: LocalDateTime</text>
+<text class="attr" x="826" y="793">- dataAlta: LocalDateTime</text>
+<text class="attr" x="826" y="818">- observacoes: String</text>
+<path d="M810 834 H1330" stroke="#d7e3eb"/>
+<text class="attr" x="826" y="861">+ setDataPrevistaAlta(valor: LocalDateTime): void</text>
+<text class="attr" x="826" y="886">+ setDataAlta(valor: LocalDateTime): void</text>
+<text class="attr" x="826" y="911">+ setObservacoes(valor: String): void</text>
+</g>
+<g><rect x="420" y="1090" width="490" height="153" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M430 1090 H900 Q910 1090 910 1100 V1150 H420 V1100 Q420 1090 430 1090" fill="#164b6b"/>
+<text class="kind" x="665.0" y="1111" text-anchor="middle">«record»</text>
+<text class="name" x="665.0" y="1135" text-anchor="middle">HistoricoMedico</text>
+<text class="attr" x="436" y="1177">+ paciente: Paciente</text>
+<text class="attr" x="436" y="1202">+ consultas: List&lt;Consulta&gt;</text>
+<text class="attr" x="436" y="1227">+ internacoes: List&lt;Internacao&gt;</text>
+</g>
+<g><rect x="80" y="1090" width="280" height="153" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M90 1090 H350 Q360 1090 360 1100 V1150 H80 V1100 Q80 1090 90 1090" fill="#164b6b"/>
+<text class="kind" x="220.0" y="1111" text-anchor="middle">«enum»</text>
+<text class="name" x="220.0" y="1135" text-anchor="middle">StatusConsulta</text>
+<text class="attr" x="96" y="1177">AGENDADA</text>
+<text class="attr" x="96" y="1202">REALIZADA</text>
+<text class="attr" x="96" y="1227">CANCELADA</text>
+</g>
+<g><rect x="1040" y="1090" width="290" height="128" rx="10" fill="white" stroke="#b7cbd7" stroke-width="1.5"/><path d="M1050 1090 H1320 Q1330 1090 1330 1100 V1150 H1040 V1100 Q1040 1090 1050 1090" fill="#164b6b"/>
+<text class="kind" x="1185.0" y="1111" text-anchor="middle">«enum»</text>
+<text class="name" x="1185.0" y="1135" text-anchor="middle">SituacaoQuarto</text>
+<text class="attr" x="1056" y="1177">DISPONIVEL</text>
+<text class="attr" x="1056" y="1202">OCUPADO</text>
+</g>
+<path d="M200 570 V417" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M370 570 V490 H650 V392" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M850 570 V525 H380 V417" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M1020 570 V455 H800 V392" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M1200 570 V367" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M435 1090 V1045 H35 V260 H80" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M480 1090 V985 H370 V877" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M850 1090 V1015 H950 V927" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/>
+<path d="M230 877 V1090" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<path d="M1330 260 H1375 V1035 H1180 V1090" fill="none" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)" stroke-dasharray="6 5"/>
+<rect x="208" y="540" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="210" y="555">0..*</text>
+<rect x="208" y="424" width="11.6" height="20" fill="#f4f7fa"/><text class="label" x="210" y="439">1</text>
+<rect x="208" y="465" width="64.8" height="20" fill="#f4f7fa"/><text class="label" x="210" y="480">paciente</text>
+<rect x="376" y="540" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="378" y="555">0..*</text>
+<rect x="658" y="399" width="11.6" height="20" fill="#f4f7fa"/><text class="label" x="660" y="414">1</text>
+<rect x="418" y="465" width="95.19999999999999" height="20" fill="#f4f7fa"/><text class="label" x="420" y="480">profissional</text>
+<rect x="853" y="540" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="855" y="555">0..*</text>
+<rect x="384" y="424" width="11.6" height="20" fill="#f4f7fa"/><text class="label" x="386" y="439">1</text>
+<rect x="518" y="501" width="64.8" height="20" fill="#f4f7fa"/><text class="label" x="520" y="516">paciente</text>
+<rect x="1026" y="538" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="1028" y="553">0..*</text>
+<rect x="808" y="399" width="11.6" height="20" fill="#f4f7fa"/><text class="label" x="810" y="414">1</text>
+<rect x="913" y="430" width="95.19999999999999" height="20" fill="#f4f7fa"/><text class="label" x="915" y="445">profissional</text>
+<rect x="1208" y="540" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="1210" y="555">0..*</text>
+<rect x="1208" y="374" width="11.6" height="20" fill="#f4f7fa"/><text class="label" x="1210" y="389">1</text>
+<rect x="1208" y="460" width="49.599999999999994" height="20" fill="#f4f7fa"/><text class="label" x="1210" y="475">quarto</text>
+<rect x="43" y="235" width="11.6" height="20" fill="#f4f7fa"/><text class="label" x="45" y="250">1</text>
+<rect x="46" y="1018" width="64.8" height="20" fill="#f4f7fa"/><text class="label" x="48" y="1033">paciente</text>
+<rect x="376" y="886" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="378" y="901">0..*</text>
+<rect x="383" y="960" width="156.0" height="20" fill="#f4f7fa"/><text class="label" x="385" y="975">consultas realizadas</text>
+<rect x="956" y="936" width="34.4" height="20" fill="#f4f7fa"/><text class="label" x="958" y="951">0..*</text>
+<rect x="958" y="990" width="87.6" height="20" fill="#f4f7fa"/><text class="label" x="960" y="1005">internações</text>
+<rect x="238" y="1005" width="49.599999999999994" height="20" fill="#f4f7fa"/><text class="label" x="240" y="1020">status</text>
+<rect x="1218" y="1010" width="64.8" height="20" fill="#f4f7fa"/><text class="label" x="1220" y="1025">situação</text>
+<text class="sub" x="420" y="1270">Histórico derivado: consultas realizadas e todas as internações.</text>
+<text class="sub" x="420" y="1295">Não é uma entidade persistida em tabela própria.</text>
+<path d="M80 1350 H145" stroke="#476a80" stroke-width="1.6" marker-end="url(#arrow)"/><text class="note" x="160" y="1355">Associação navegável · 1 = uma instância · 0..* = zero ou várias</text>
+<path d="M80 1390 H145" stroke="#476a80" stroke-width="1.6" stroke-dasharray="6 5" marker-end="url(#arrow)"/><text class="note" x="160" y="1395">Uso de enumeração · métodos de acesso apresentados parcialmente</text>
+<text class="sub" x="80" y="1430">Serviços e repositórios estão documentados nos cartões CRC. User está vazio e os DTOs auxiliares foram omitidos deste diagrama de domínio.</text>
+</svg>

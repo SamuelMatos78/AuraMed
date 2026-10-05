@@ -1,14 +1,16 @@
 package com.auramed.auramed.controller;
+import java.time.LocalDateTime;
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.auramed.auramed.model.InternacaoResumo;
 import com.auramed.auramed.model.QuartoVagas;
 import com.auramed.auramed.service.InternacaoService;
 import com.auramed.auramed.service.ProfissionalSaudeService;
 import com.auramed.auramed.service.QuartoService;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import java.time.LocalDateTime;
-import java.util.List;
 
 
 @Controller
@@ -55,6 +57,16 @@ public class AuraMedControl {
     public String quartosPAge(){
 
         return "quartos";
+    }
+    @GetMapping("/profissionais")
+    public String profissionaisPage(){
+
+        return "profissionais";
+    }
+    @GetMapping("/consultas")
+    public String consultasPage(){
+
+        return "consultas";
     }
 
     @GetMapping ("/pacientes")

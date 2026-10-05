@@ -1,0 +1,344 @@
+/* Estilos desta página;
+reutiliza as cores e a estrutura de style.css. */
+.consultas-page .resumo-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.consultas-page .metric-card {
+    min-height: 130px;
+}
+
+.consultas-page .metric-card__content > span {
+    min-height: auto;
+    margin-bottom: 12px;
+}
+
+.consultas-page .cadastro-panel {
+    margin-top: 24px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--surface);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+}
+
+.consultas-page .cadastro-panel > summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 22px 26px;
+    color: var(--primary-700);
+    font-size: .9rem;
+    font-weight: 700;
+    list-style: none;
+    cursor: pointer;
+}
+
+.consultas-page .cadastro-panel > summary::-webkit-details-marker, .consultas-page .registro-resumo::-webkit-details-marker {
+    display: none;
+}
+
+.consultas-page .cadastro-panel > summary > span {
+    font-size: 1.4rem;
+}
+
+.consultas-page .cadastro-panel[open] > summary > span {
+    transform: rotate(45deg);
+}
+
+.consultas-page .cadastro-form {
+    padding: 0 26px 24px;
+}
+
+.consultas-page .form-aviso {
+    margin: 0 0 22px;
+    color: var(--text-muted);
+    font-size: .8rem;
+    line-height: 1.6;
+}
+
+.consultas-page .campos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.consultas-page .campo {
+    min-width: 0;
+}
+
+.consultas-page .campo label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.consultas-page .campo input, .consultas-page .campo select, .consultas-page .campo textarea {
+    width: 100%;
+    min-height: 44px;
+    padding: 11px 12px;
+    border: 1px solid #bfcfd9;
+    border-radius: 8px;
+    color: var(--text);
+    background: var(--surface);
+    font: inherit;
+    font-size: .85rem;
+}
+
+.consultas-page .campo textarea {
+    resize: vertical;
+}
+
+.consultas-page .form-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.consultas-page .form-footer > span {
+    color: var(--text-muted);
+    font-size: .75rem;
+}
+
+.consultas-page .form-footer button {
+    padding: 12px 20px;
+    border: 0;
+    border-radius: 9px;
+    font: inherit;
+    font-size: .8rem;
+    font-weight: 600;
+}
+
+.consultas-page .form-footer button:disabled {
+    color: #546777;
+    background: #e3eaf0;
+    cursor: not-allowed;
+}
+
+.consultas-page .lista-panel {
+    margin-top: 24px;
+    padding-bottom: 24px;
+}
+
+.consultas-page .appointment-count {
+    display: inline-block;
+    flex-shrink: 0;
+}
+
+.consultas-page .registro-lista {
+    display: grid;
+    gap: 12px;
+    margin-top: 22px;
+}
+
+.consultas-page .registro-card {
+    min-width: 0;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.consultas-page .registro-resumo {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px;
+    list-style: none;
+    cursor: pointer;
+}
+
+.consultas-page .registro-resumo:hover, .consultas-page .registro-card[open] > .registro-resumo {
+    background: var(--primary-50);
+}
+
+.consultas-page .registro-identificacao {
+    flex: 1;
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.consultas-page .registro-identificacao strong, .consultas-page .registro-identificacao > span {
+    display: block;
+}
+
+.consultas-page .registro-identificacao strong {
+    font-size: .9rem;
+    line-height: 1.5;
+}
+
+.consultas-page .registro-identificacao > span {
+    margin-top: 4px;
+    color: var(--text-muted);
+    font-size: .75rem;
+    line-height: 1.6;
+}
+
+.consultas-page .registro-acao {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 8px;
+    color: var(--primary-700);
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.consultas-page .seta {
+    display: inline-block;
+    color: var(--primary-700);
+    font-size: 1.1rem;
+}
+
+.consultas-page .registro-card[open] .seta {
+    transform: rotate(180deg);
+}
+
+.consultas-page .registro-dados {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    margin: 0;
+    padding: 22px;
+    border-top: 1px solid var(--border);
+}
+
+.consultas-page .registro-dados > div {
+    min-width: 0;
+}
+
+.consultas-page .registro-dados dt {
+    margin-bottom: 6px;
+    color: var(--text-muted);
+    font-size: .73rem;
+}
+
+.consultas-page .registro-dados dd {
+    margin: 0;
+    font-size: .85rem;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.consultas-page .registro-dados a {
+    color: var(--primary-700);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.consultas-page :is(summary, input, select, textarea, a):focus-visible {
+    outline: 2px solid var(--primary-700);
+    outline-offset: 3px;
+}
+
+.consultas-page summary:focus-visible {
+    outline-offset: -3px;
+}
+
+@media (max-width: 900px) {
+    .consultas-page .resumo-grid {
+        gap: 12px;
+    }
+    .consultas-page .metric-card {
+        padding: 20px;
+    }
+}
+
+@media (max-width: 580px) {
+    .consultas-page .resumo-grid, .consultas-page .campos-grid, .consultas-page .registro-dados {
+        grid-template-columns: 1fr;
+    }
+    .consultas-page .cadastro-panel > summary {
+        padding: 20px 16px;
+    }
+    .consultas-page .cadastro-form {
+        padding: 0 16px 20px;
+    }
+    .consultas-page .form-footer {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+    .consultas-page .form-footer button {
+        width: 100%;
+    }
+    .consultas-page .registro-resumo {
+        gap: 12px;
+        padding: 16px 12px;
+        flex-wrap: wrap;
+    }
+    .consultas-page .registro-dados {
+        padding: 18px 14px;
+    }
+    .consultas-page .registro-acao {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    .consultas-page .panel-header {
+        align-items: flex-start;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+    .consultas-page .lista-panel {
+        padding: 22px 16px;
+    }
+}
+
+.consultas-page .consulta-horario {
+    flex: 0 0 90px;
+    padding-right: 14px;
+    border-right: 1px solid var(--border);
+}
+
+.consultas-page .consulta-horario strong, .consultas-page .consulta-horario span {
+    display: block;
+}
+
+.consultas-page .consulta-horario strong {
+    color: var(--primary-900);
+    font-size: 1rem;
+}
+
+.consultas-page .consulta-horario span {
+    margin-top: 5px;
+    color: var(--text-muted);
+    font-size: .68rem;
+}
+
+.consultas-page .consulta-status {
+    padding: 7px 11px;
+    border-radius: 999px;
+    font-size: .7rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.consultas-page .consulta-status--agendada {
+    color: #245da7;
+    background: var(--blue-soft);
+}
+
+.consultas-page .consulta-status--realizada {
+    color: #237d5d;
+    background: var(--green-soft);
+}
+
+.consultas-page .consulta-status--cancelada {
+    color: #9c4b25;
+    background: var(--orange-soft);
+}
+
+@media (max-width: 580px) {
+    .consultas-page .registro-identificacao {
+        flex-basis: calc(100% - 104px);
+    }
+    .consultas-page .consulta-status {
+        margin-left: 104px;
+    }
+    .consultas-page .registro-resumo > .seta {
+        margin-left: auto;
+    }
+}

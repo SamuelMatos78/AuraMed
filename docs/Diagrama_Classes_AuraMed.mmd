@@ -1,0 +1,73 @@
+classDiagram
+direction TB
+class Paciente {
+    -Long id
+    -String nome
+    -String cpf
+    -LocalDate dataNascimento
+    -String telefone
+    -String endereco
+    -String email
+}
+class ProfissionalSaude {
+    -Long id
+    -String nome
+    -String registroProfissional
+    -String especialidade
+    -String telefone
+    -String email
+}
+class Quarto {
+    -Long id
+    -String numero
+    -Integer andar
+    -Integer capacidadeMaxima
+    -SituacaoQuarto situacao
+}
+class Consulta {
+    -Long id
+    -Paciente paciente
+    -ProfissionalSaude profissional
+    -LocalDateTime dataHora
+    -String motivo
+    -String observacoesMedicas
+    -StatusConsulta status
+}
+class Internacao {
+    -Long id
+    -Paciente paciente
+    -ProfissionalSaude profissional
+    -Quarto quarto
+    -LocalDateTime dataEntrada
+    -LocalDateTime dataPrevistaAlta
+    -LocalDateTime dataAlta
+    -String observacoes
+}
+class HistoricoMedico {
+    <<record>>
+    +Paciente paciente
+    +List~Consulta~ consultas
+    +List~Internacao~ internacoes
+}
+class StatusConsulta {
+    <<enum>>
+    AGENDADA
+    REALIZADA
+    CANCELADA
+}
+class SituacaoQuarto {
+    <<enum>>
+    DISPONIVEL
+    OCUPADO
+}
+Consulta "0..*" --> "1" Paciente : paciente
+Consulta "0..*" --> "1" ProfissionalSaude : profissional
+Internacao "0..*" --> "1" Paciente : paciente
+Internacao "0..*" --> "1" ProfissionalSaude : profissional
+Internacao "0..*" --> "1" Quarto : quarto
+HistoricoMedico --> "1" Paciente : paciente
+HistoricoMedico --> "0..*" Consulta : consultas realizadas
+HistoricoMedico --> "0..*" Internacao : internacoes
+Consulta ..> StatusConsulta : status
+Quarto ..> SituacaoQuarto : situacao
+note for HistoricoMedico "Resultado derivado, sem tabela propria."

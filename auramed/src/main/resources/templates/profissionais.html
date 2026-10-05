@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Gestão de profissionais da saúde no AuraMed">
+    <title>AuraMed | Profissionais</title>
+    <link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="../static/css/profissionais.css" th:href="@{/css/profissionais.css}">
+</head>
+<body class="profissionais-page">
+<div class="app-shell">
+    <aside class="sidebar" aria-label="Navegação principal">
+        <a class="brand" href="home.html" th:href="@{/home}" aria-label="AuraMed - Página inicial">
+            <span class="brand__mark" aria-hidden="true">
+                <svg viewBox="0 0 24 24" role="img">
+                    <path d="M9.5 3.5h5v6h6v5h-6v6h-5v-6h-6v-5h6z"/>
+                </svg>
+            </span>
+            <span>
+                <strong>AuraMed</strong>
+                <small>Gestão Hospitalar</small>
+            </span>
+        </a>
+
+        <nav class="main-nav">
+            <p class="nav-label">Menu principal</p>
+            <ul>
+                <li>
+                    <a class="nav-link" href="home" th:href="@{/home}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 13h6V4H4v9Zm0 7h6v-5H4v5Zm10 0h6v-9h-6v9Zm0-16v5h6V4h-6Z"/>
+                        </svg>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="pacientes" th:href="@{/pacientes}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5s-3 1.34-3 3 1.34 3 3 3Zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5 5 6.34 5 8s1.34 3 3 3Zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5C15 14.17 10.33 13 8 13Zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5Z"/>
+                        </svg>
+                        <span>Pacientes</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link is-active" href="profissionais" aria-current="page">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 8a3 3 0 1 0-2.83-4H7.83A3 3 0 1 0 5 8v8a3 3 0 1 0 2.83 4h8.34A3 3 0 1 0 19 16V8Zm-3 10H8v-.01A3 3 0 0 0 7 16V8c.37-.13.71-.34 1-.59h8c.29.25.63.46 1 .59v8c-.37.13-.71.34-1 .59V18Z"/>
+                        </svg>
+                        <span>Profissionais</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="consultas">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 4h-1V2h-2v2H8V2H6v2H5a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h14a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3Zm1 15a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8h16v8Zm0-10H4V7a1 1 0 0 1 1-1h1v2h2V6h8v2h2V6h1a1 1 0 0 1 1 1v2Z"/>
+                        </svg>
+                        <span>Consultas</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="internacoes" th:href="@{/internacoes}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 7h-8v6H3V5H1v15h2v-3h18v3h2v-9a4 4 0 0 0-4-4ZM7 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm6-3h6a2 2 0 0 1 2 2v2h-8V9Z"/>
+                        </svg>
+                        <span>Internações</span>
+                    </a>
+                </li>
+                <li>
+                    <a class="nav-link" href="quartos" th:href="@{/quartos}">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M20 9V5a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v4a3 3 0 0 0-2 2.82V21h2v-2h16v2h2v-9.18A3 3 0 0 0 20 9ZM6 5h12v4h-1V7H7v2H6V5Zm14 12H4v-5.18A1 1 0 0 1 5 11h14a1 1 0 0 1 1 1v5Z"/>
+                        </svg>
+                        <span>Quartos</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="sidebar__status">
+            <span class="status-dot" aria-hidden="true"></span>
+            <span>
+                <strong>Ambiente acadêmico</strong>
+                <small>Dados de demonstração</small>
+            </span>
+        </div>
+    </aside>
+
+    <div class="workspace">
+        <header class="topbar">
+            <div class="topbar__title">
+                <span class="eyebrow">Painel administrativo</span>
+                <strong>Sistema Hospitalar</strong>
+            </div>
+
+            <div class="user-area">
+                <span class="avatar" aria-hidden="true">AD</span>
+                <span class="user-details">
+                    <strong>Administrador</strong>
+                    <small>Gestão geral</small>
+                </span>
+                <a class="logout-link" href="login" th:href="@{/login}">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M10 17v2H5V5h5v2h2V3H3v18h9v-4h-2Zm5.59-9.41L17 9l2 2h-9v2h9l-2 2-1.41 1.41L20 12l-4.41-4.41ZM17 9Z"/>
+                    </svg>
+                    <span>Sair</span>
+                </a>
+            </div>
+        </header>
+
+        <main class="dashboard">
+            <section class="welcome" aria-labelledby="page-title">
+                <div>
+                    <p class="eyebrow">Atendimento hospitalar</p>
+                    <h1 id="page-title">Profissionais</h1>
+                    <p>Consulte a equipe de saúde, suas especialidades e os dados de contato.</p>
+                </div>
+                <span class="today-badge">Dados de demonstração</span>
+            </section>
+            <section class="metrics-grid resumo-grid" aria-label="Resumo dos dados de demonstração">
+                <article class="metric-card metric-card--blue">
+                    <div class="metric-card__content">
+                        <span>Profissionais cadastrados</span>
+                        <strong>3</strong>
+                        <small>Na lista demonstrativa</small>
+                    </div>
+                </article>
+                <article class="metric-card metric-card--violet">
+                    <div class="metric-card__content">
+                        <span>Especialidades</span>
+                        <strong>3</strong>
+                        <small>Áreas de atendimento</small>
+                    </div>
+                </article>
+                <article class="metric-card metric-card--green">
+                    <div class="metric-card__content">
+                        <span>Contatos disponíveis</span>
+                        <strong>3</strong>
+                        <small>Telefone e e-mail informados</small>
+                    </div>
+                </article>
+            </section>
+            <details class="cadastro-panel" id="cadastro">
+                <summary>Novo profissional<span aria-hidden="true">＋</span>
+                </summary>
+                <form class="cadastro-form" aria-describedby="aviso-cadastro">
+                    <p id="aviso-cadastro" class="form-aviso">Formulário demonstrativo. Os dados preenchidos não são salvos.</p>
+                    <div class="campos-grid">
+                        <div class="campo">
+                            <label for="nome">Nome completo</label>
+                            <input id="nome" name="nome" type="text" maxlength="150" autocomplete="name" required>
+                        </div>
+                        <div class="campo">
+                            <label for="registroProfissional">Registro profissional</label>
+                            <input id="registroProfissional" name="registroProfissional" type="text" maxlength="50" placeholder="Ex.: CRM-MG 000000" required>
+                        </div>
+                        <div class="campo">
+                            <label for="especialidade">Especialidade</label>
+                            <input id="especialidade" name="especialidade" type="text" maxlength="100" required>
+                        </div>
+                        <div class="campo">
+                            <label for="telefone">Telefone</label>
+                            <input id="telefone" name="telefone" type="tel" maxlength="20" autocomplete="tel" required>
+                        </div>
+                        <div class="campo">
+                            <label for="email">E-mail</label>
+                            <input id="email" name="email" type="email" maxlength="150" autocomplete="email" required>
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <span>Preencha todos os campos obrigatórios.</span>
+                        <button type="submit" disabled>Salvar cadastro</button>
+                    </div>
+                </form>
+            </details>
+            <section class="appointments-panel lista-panel" aria-labelledby="lista-title">
+                <header class="panel-header">
+                    <div>
+                        <p class="eyebrow">Profissionais cadastrados</p>
+                        <h2 id="lista-title">Equipe de saúde</h2>
+                    </div>
+                    <span class="appointment-count">3 profissionais</span>
+                </header>
+                <div class="registro-lista">
+                    <details class="registro-card">
+                        <summary class="registro-resumo">
+                            <span class="patient-avatar patient-avatar--blue" aria-hidden="true">AH</span>
+                            <span class="registro-identificacao">
+                                <strong>Dra. Ana Helena</strong>
+                                <span>Cardiologia · CRM-MG 000001</span>
+                            </span>
+                            <span class="registro-acao">Ver dados <span class="seta" aria-hidden="true">⌄</span>
+                        </span>
+                    </summary>
+                    <dl class="registro-dados">
+                        <div>
+                            <dt>Nome completo</dt>
+                            <dd>Dra. Ana Helena</dd>
+                        </div>
+                        <div>
+                            <dt>Registro profissional</dt>
+                            <dd>CRM-MG 000001</dd>
+                        </div>
+                        <div>
+                            <dt>Especialidade</dt>
+                            <dd>Cardiologia</dd>
+                        </div>
+                        <div>
+                            <dt>Telefone</dt>
+                            <dd>
+                                <a href="tel:+5531900000001">(31) 90000-0001</a>
+                            </dd>
+                        </div>
+                        <div>
+                            <dt>E-mail</dt>
+                            <dd>
+                                <a href="mailto:ana.helena@example.com">ana.helena@example.com</a>
+                            </dd>
+                        </div>
+                    </dl>
+                </details>
+                <details class="registro-card">
+                    <summary class="registro-resumo">
+                        <span class="patient-avatar patient-avatar--violet" aria-hidden="true">RL</span>
+                        <span class="registro-identificacao">
+                            <strong>Dr. Rafael Lima</strong>
+                            <span>Clínica médica · CRM-MG 000002</span>
+                        </span>
+                        <span class="registro-acao">Ver dados <span class="seta" aria-hidden="true">⌄</span>
+                    </span>
+                </summary>
+                <dl class="registro-dados">
+                    <div>
+                        <dt>Nome completo</dt>
+                        <dd>Dr. Rafael Lima</dd>
+                    </div>
+                    <div>
+                        <dt>Registro profissional</dt>
+                        <dd>CRM-MG 000002</dd>
+                    </div>
+                    <div>
+                        <dt>Especialidade</dt>
+                        <dd>Clínica médica</dd>
+                    </div>
+                    <div>
+                        <dt>Telefone</dt>
+                        <dd>
+                            <a href="tel:+5531900000002">(31) 90000-0002</a>
+                        </dd>
+                    </div>
+                    <div>
+                        <dt>E-mail</dt>
+                        <dd>
+                            <a href="mailto:rafael.lima@example.com">rafael.lima@example.com</a>
+                        </dd>
+                    </div>
+                </dl>
+            </details>
+            <details class="registro-card">
+                <summary class="registro-resumo">
+                    <span class="patient-avatar patient-avatar--orange" aria-hidden="true">BC</span>
+                    <span class="registro-identificacao">
+                        <strong>Dra. Beatriz Costa</strong>
+                        <span>Pediatria · CRM-MG 000003</span>
+                    </span>
+                    <span class="registro-acao">Ver dados <span class="seta" aria-hidden="true">⌄</span>
+                </span>
+            </summary>
+            <dl class="registro-dados">
+                <div>
+                    <dt>Nome completo</dt>
+                    <dd>Dra. Beatriz Costa</dd>
+                </div>
+                <div>
+                    <dt>Registro profissional</dt>
+                    <dd>CRM-MG 000003</dd>
+                </div>
+                <div>
+                    <dt>Especialidade</dt>
+                    <dd>Pediatria</dd>
+                </div>
+                <div>
+                    <dt>Telefone</dt>
+                    <dd>
+                        <a href="tel:+5531900000003">(31) 90000-0003</a>
+                    </dd>
+                </div>
+                <div>
+                    <dt>E-mail</dt>
+                    <dd>
+                        <a href="mailto:beatriz.costa@example.com">beatriz.costa@example.com</a>
+                    </dd>
+                </div>
+            </dl>
+        </details>
+    </div>
+</section>
+</main>
+</div>
+</div>
+</body>
+</html>
