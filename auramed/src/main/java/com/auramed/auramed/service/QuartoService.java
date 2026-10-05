@@ -1,6 +1,7 @@
 package com.auramed.auramed.service;
 
 import com.auramed.auramed.model.Quarto;
+import com.auramed.auramed.model.QuartoVagas;
 import com.auramed.auramed.model.SituacaoQuarto;
 import com.auramed.auramed.repository.InternacaoRepository;
 import com.auramed.auramed.repository.QuartoRepository;
@@ -51,6 +52,15 @@ public class QuartoService {
     public long vagasDisponiveis(Long id) {
         Quarto quarto = buscar(id);
         return quarto.getCapacidadeMaxima() - internacoes.countByQuartoIdAndDataAltaIsNull(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<QuartoVagas> listarComVaga() {
+        return repository.findAll().stream()
+            .map(q -> new QuartoVagas(q.getId(), q.getNumero(), q.getAndar(),
+                q.getCapacidadeMaxima() - internacoes.countByQuartoIdAndDataAltaIsNull(q.getId())))
+            .filter(q -> q.vagasDisponiveis() > 0)
+            .toList();
     }
 
     private void validar(Quarto q) {
