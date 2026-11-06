@@ -8,6 +8,7 @@ import com.auramed.auramed.repository.InternacaoRepository;
 import com.auramed.auramed.repository.PacienteRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -24,7 +25,8 @@ public class HistoricoMedicoService {
         Paciente paciente = pacientes.findById(Validacao.id(pacienteId, "Paciente"))
             .orElseThrow(() -> new NoSuchElementException("Paciente não encontrado"));
         return new HistoricoMedico(paciente,
-            consultas.findByPacienteIdAndStatusOrderByDataHoraDesc(pacienteId, StatusConsulta.REALIZADA),
+            consultas.findByPacienteIdAndStatusInOrderByDataHoraDesc(pacienteId,
+                List.of(StatusConsulta.CONCLUIDA, StatusConsulta.REALIZADA)),
             internacoes.findByPacienteIdOrderByDataEntradaDesc(pacienteId));
     }
 }

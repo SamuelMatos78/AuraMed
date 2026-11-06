@@ -38,7 +38,21 @@ public class Consulta {
     public String getMotivo() { return motivo; }
     public void setMotivo(String motivo) { this.motivo = motivo; }
     public String getObservacoesMedicas() { return observacoesMedicas; }
-    public void setObservacoesMedicas(String observacoesMedicas) { this.observacoesMedicas = observacoesMedicas; }
-    public StatusConsulta getStatus() { return status; }
-    public void setStatus(StatusConsulta status) { this.status = status; }
+    public void registrarObservacoes(String observacoesMedicas) {
+        if (getStatus() != StatusConsulta.EM_ATENDIMENTO && getStatus() != StatusConsulta.CONCLUIDA)
+            throw new IllegalStateException("Observações só podem ser registradas durante ou após o atendimento");
+        this.observacoesMedicas = observacoesMedicas;
+    }
+    @Deprecated(forRemoval = false)
+    public void setObservacoesMedicas(String observacoesMedicas) { registrarObservacoes(observacoesMedicas); }
+    public StatusConsulta getStatus() { return status.normalizado(); }
+    public void alterarStatus(StatusConsulta proximoStatus) {
+        StatusConsulta atual = getStatus();
+        StatusConsulta destino = proximoStatus == null ? null : proximoStatus.normalizado();
+        if (!atual.permiteTransicaoPara(destino))
+            throw new IllegalStateException("Transição de " + atual + " para " + destino + " não permitida");
+        this.status = destino;
+    }
+    @Deprecated(forRemoval = false)
+    public void setStatus(StatusConsulta proximoStatus) { alterarStatus(proximoStatus); }
 }

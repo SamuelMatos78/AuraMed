@@ -4,11 +4,13 @@ import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.auramed.auramed.model.InternacaoResumo;
 import com.auramed.auramed.model.QuartoVagas;
 import com.auramed.auramed.service.InternacaoService;
+import com.auramed.auramed.service.PacienteService;
 import com.auramed.auramed.service.ProfissionalSaudeService;
 import com.auramed.auramed.service.QuartoService;
 
@@ -19,9 +21,12 @@ public class AuraMedControl {
     private final InternacaoService internacoes;
     private final ProfissionalSaudeService profissionais;
     private final QuartoService quartos;
+    private final PacienteService pacientes;
 
-    public AuraMedControl(InternacaoService internacoes, ProfissionalSaudeService profissionais, QuartoService quartos) {
+    public AuraMedControl(InternacaoService internacoes, ProfissionalSaudeService profissionais, QuartoService quartos,
+                          PacienteService pacientes) {
         this.internacoes = internacoes; this.profissionais = profissionais; this.quartos = quartos;
+        this.pacientes = pacientes;
     }
 
 
@@ -63,14 +68,15 @@ public class AuraMedControl {
 
         return "profissionais";
     }
-    @GetMapping("/consultas")
+    @GetMapping(value = "/consultas", produces = MediaType.TEXT_HTML_VALUE)
     public String consultasPage(){
 
         return "consultas";
     }
 
-    @GetMapping ("/pacientes")
-    public String pacientesPage(){
+    @GetMapping(value = "/pacientes", produces = MediaType.TEXT_HTML_VALUE)
+    public String pacientesPage(Model model){
+        model.addAttribute("pacientes", pacientes.listar());
         return "pacientes";
     }
 

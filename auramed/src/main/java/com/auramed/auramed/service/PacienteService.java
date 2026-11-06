@@ -42,13 +42,18 @@ public class PacienteService {
     private void validar(Paciente p) {
         if (p == null) throw new IllegalArgumentException("Paciente é obrigatório");
         p.setNome(Validacao.obrigatorio(p.getNome(), "Nome"));
+        if (p.getNome().length() > 150) throw new IllegalArgumentException("Nome deve ter no máximo 150 caracteres");
         String cpf = Validacao.obrigatorio(p.getCpf(), "CPF");
         if (!cpf.matches("[0-9]{11}")) throw new IllegalArgumentException("CPF deve conter 11 dígitos");
         p.setCpf(cpf);
         if (p.getDataNascimento() == null || p.getDataNascimento().isAfter(LocalDate.now()))
             throw new IllegalArgumentException("Data de nascimento inválida");
         p.setTelefone(Validacao.obrigatorio(p.getTelefone(), "Telefone"));
+        if (p.getTelefone().length() > 20) throw new IllegalArgumentException("Telefone deve ter no máximo 20 caracteres");
         p.setEndereco(Validacao.obrigatorio(p.getEndereco(), "Endereço"));
+        if (p.getEndereco().length() > 255) throw new IllegalArgumentException("Endereço deve ter no máximo 255 caracteres");
         p.setEmail(Validacao.obrigatorio(p.getEmail(), "E-mail"));
+        if (p.getEmail().length() > 150 || !p.getEmail().matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"))
+            throw new IllegalArgumentException("E-mail inválido");
     }
 }
