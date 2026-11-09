@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
+import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 import java.time.LocalDate;
@@ -34,7 +35,7 @@ class PaginaInternacoesTest {
 
     @Test
     void semDadosMostraEstadoVazioEPendencias() throws Exception {
-        mvc.perform(get("/internacoes"))
+        mvc.perform(get("/internacoes").accept(MediaType.TEXT_HTML))
             .andExpect(status().isOk())
             .andExpect(content().string(containsString("Nenhuma internação registrada")))
             .andExpect(content().string(containsString("Não há profissionais da saúde cadastrados.")))
@@ -51,7 +52,7 @@ class PaginaInternacoesTest {
         LocalDateTime entrada = LocalDateTime.now().minusDays(5);
         internacoes.internar(ana.getId(), medica.getId(), cheio.getId(), entrada, entrada.plusDays(2), "Observação cardíaca");
 
-        mvc.perform(get("/internacoes"))
+        mvc.perform(get("/internacoes").accept(MediaType.TEXT_HTML))
             .andExpect(status().isOk())
             .andExpect(model().attribute("altasAtrasadas", 1L))
             .andExpect(model().attribute("leitosLivres", 2L))

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import com.auramed.auramed.model.Consulta;
+import com.auramed.auramed.model.Internacao;
 import com.auramed.auramed.model.Paciente;
 import com.auramed.auramed.model.StatusConsulta;
 
@@ -57,6 +58,38 @@ public final class ApiDtos {
             return new ConsultaResponse(consulta.getId(), consulta.getPaciente().getId(), consulta.getPaciente().getNome(),
                 consulta.getProfissional().getId(), consulta.getProfissional().getNome(), consulta.getDataHora(),
                 consulta.getMotivo(), consulta.getObservacoesMedicas(), consulta.getStatus());
+        }
+    }
+
+    public record InternacaoRequest(
+        Long pacienteId,
+        Long profissionalId,
+        Long quartoId,
+        LocalDateTime dataEntrada,
+        LocalDateTime dataPrevistaAlta,
+        String observacoes
+    ) {}
+
+    public record AltaRequest(LocalDateTime dataAlta, String observacoes) {}
+
+    public record InternacaoResponse(
+        Long id,
+        Long pacienteId,
+        String pacienteNome,
+        Long profissionalId,
+        String profissionalNome,
+        Long quartoId,
+        String quartoNumero,
+        LocalDateTime dataEntrada,
+        LocalDateTime dataPrevistaAlta,
+        LocalDateTime dataAlta,
+        String observacoes
+    ) {
+        static InternacaoResponse from(Internacao internacao) {
+            return new InternacaoResponse(internacao.getId(), internacao.getPaciente().getId(), internacao.getPaciente().getNome(),
+                internacao.getProfissional().getId(), internacao.getProfissional().getNome(),
+                internacao.getQuarto().getId(), internacao.getQuarto().getNumero(), internacao.getDataEntrada(),
+                internacao.getDataPrevistaAlta(), internacao.getDataAlta(), internacao.getObservacoes());
         }
     }
 
