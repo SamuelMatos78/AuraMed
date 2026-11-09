@@ -40,6 +40,11 @@ public class ProfissionalSaudeService {
     @Transactional(readOnly = true)
     public List<ProfissionalSaude> listar() { return repository.findAll(); }
 
+    @Transactional(readOnly = true)
+    public List<ProfissionalSaude> listarPorEspecialidade(String especialidade) {
+        return repository.findByEspecialidadeContainingIgnoreCaseOrderByNome(Validacao.obrigatorio(especialidade, "Especialidade"));
+    }
+
     private void validar(ProfissionalSaude p) {
         if (p == null) throw new IllegalArgumentException("Profissional é obrigatório");
         p.setNome(Validacao.obrigatorio(p.getNome(), "Nome"));
