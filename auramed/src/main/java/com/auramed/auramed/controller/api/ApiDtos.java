@@ -39,6 +39,33 @@ public final class ApiDtos {
         }
     }
 
+    public record ProfissionalRequest(
+        String nome,
+        String registroProfissional,
+        String especialidade,
+        String telefone,
+        String email
+    ) {
+        ProfissionalSaude toModel() {
+            return new ProfissionalSaude(nome, registroProfissional, especialidade, telefone, email);
+        }
+    }
+
+    public record ProfissionalResponse(
+        Long id,
+        String nome,
+        String registroProfissional,
+        String especialidade,
+        String telefone,
+        String email
+    ) {
+        static ProfissionalResponse from(ProfissionalSaude profissional) {
+            return new ProfissionalResponse(profissional.getId(), profissional.getNome(),
+                profissional.getRegistroProfissional(), profissional.getEspecialidade(),
+                profissional.getTelefone(), profissional.getEmail());
+        }
+    }
+
     public record ConsultaRequest(Long pacienteId, Long profissionalId, LocalDateTime dataHora, String motivo) {}
 
     public record ConsultaStatusRequest(StatusConsulta status, String observacoesMedicas) {}

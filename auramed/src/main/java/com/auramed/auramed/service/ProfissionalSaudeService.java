@@ -40,12 +40,25 @@ public class ProfissionalSaudeService {
     @Transactional(readOnly = true)
     public List<ProfissionalSaude> listar() { return repository.findAll(); }
 
+    @Transactional(readOnly = true)
+    public List<ProfissionalSaude> listarPorEspecialidade(String especialidade) {
+        return repository.findByEspecialidadeIgnoreCaseOrderByNomeAsc(Validacao.obrigatorio(especialidade, "Especialidade"));
+    }
+
     private void validar(ProfissionalSaude p) {
         if (p == null) throw new IllegalArgumentException("Profissional é obrigatório");
         p.setNome(Validacao.obrigatorio(p.getNome(), "Nome"));
+        if (p.getNome().length() > 150) throw new IllegalArgumentException("Nome deve ter no máximo 150 caracteres");
         p.setRegistroProfissional(Validacao.obrigatorio(p.getRegistroProfissional(), "Registro profissional"));
+        if (p.getRegistroProfissional().length() > 50)
+            throw new IllegalArgumentException("Registro profissional deve ter no máximo 50 caracteres");
         p.setEspecialidade(Validacao.obrigatorio(p.getEspecialidade(), "Especialidade"));
+        if (p.getEspecialidade().length() > 100)
+            throw new IllegalArgumentException("Especialidade deve ter no máximo 100 caracteres");
         p.setTelefone(Validacao.obrigatorio(p.getTelefone(), "Telefone"));
+        if (p.getTelefone().length() > 20) throw new IllegalArgumentException("Telefone deve ter no máximo 20 caracteres");
         p.setEmail(Validacao.obrigatorio(p.getEmail(), "E-mail"));
+        if (p.getEmail().length() > 150 || !p.getEmail().matches("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"))
+            throw new IllegalArgumentException("E-mail inválido");
     }
 }
