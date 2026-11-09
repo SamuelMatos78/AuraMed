@@ -41,7 +41,7 @@ public class AuraMedControl {
         return "home";
     }
 
-    @GetMapping("/internacoes")
+    @GetMapping(value = "/internacoes", produces = MediaType.TEXT_HTML_VALUE)
     public String internacoesPage(Model model) {
         //model.addAttribute("nome", principal.getName()); entrega futura
         LocalDateTime agora = LocalDateTime.now();
