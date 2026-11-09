@@ -1,5 +1,6 @@
 package com.auramed.auramed.controller;
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -7,8 +8,11 @@ import org.springframework.ui.Model;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.auramed.auramed.model.Consulta;
 import com.auramed.auramed.model.InternacaoResumo;
+
 import com.auramed.auramed.model.QuartoVagas;
+import com.auramed.auramed.service.ConsultaService;
 import com.auramed.auramed.service.InternacaoService;
 import com.auramed.auramed.service.PacienteService;
 import com.auramed.auramed.service.ProfissionalSaudeService;
@@ -22,9 +26,11 @@ public class AuraMedControl {
     private final ProfissionalSaudeService profissionais;
     private final QuartoService quartos;
     private final PacienteService pacientes;
+    private final ConsultaService consultas;
 
     public AuraMedControl(InternacaoService internacoes, ProfissionalSaudeService profissionais, QuartoService quartos,
-                          PacienteService pacientes) {
+                          PacienteService pacientes, ConsultaService consultas) {
+        this.consultas = consultas;
         this.internacoes = internacoes; this.profissionais = profissionais; this.quartos = quartos;
         this.pacientes = pacientes;
     }
@@ -69,8 +75,12 @@ public class AuraMedControl {
         return "profissionais";
     }
     @GetMapping(value = "/consultas", produces = MediaType.TEXT_HTML_VALUE)
-    public String consultasPage(){
-
+    public String consultasPage(Model model){
+        List<Consulta> lista = consultas.listar().stream()
+            .sorted(Comparator.comparing(Consulta::getDataHora).reversed()).toList();
+        model.addAttribute("consultas", lista);
+        model.addAttribute("pacientes", pacientes.listar());
+        model.addAttribute("profissionais", profissionais.listar());
         return "consultas";
     }
 

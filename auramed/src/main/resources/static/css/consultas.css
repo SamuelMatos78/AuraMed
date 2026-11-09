@@ -321,12 +321,20 @@ reutiliza as cores e a estrutura de style.css. */
     background: var(--blue-soft);
 }
 
+.consultas-page .consulta-status--confirmada,
+.consultas-page .consulta-status--em_atendimento {
+    color: #245da7;
+    background: var(--blue-soft);
+}
+
+.consultas-page .consulta-status--concluida,
 .consultas-page .consulta-status--realizada {
     color: #237d5d;
     background: var(--green-soft);
 }
 
-.consultas-page .consulta-status--cancelada {
+.consultas-page .consulta-status--cancelada,
+.consultas-page .consulta-status--nao_compareceu {
     color: #9c4b25;
     background: var(--orange-soft);
 }
@@ -341,4 +349,23 @@ reutiliza as cores e a estrutura de style.css. */
     .consultas-page .registro-resumo > .seta {
         margin-left: auto;
     }
+}
+
+.consultas-page .registro-acoes {
+    padding: 0 20px 18px;
+}
+
+.consultas-page .btn-cancelar {
+    padding: 8px 14px;
+    border: 1px solid #9c4b25;
+    border-radius: 8px;
+    color: #9c4b25;
+    background: transparent;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.consultas-page .btn-cancelar:hover {
+    color: #fff;
+    background: #9c4b25;
 }
