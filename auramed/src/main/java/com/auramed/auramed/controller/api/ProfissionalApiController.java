@@ -32,7 +32,8 @@ public class ProfissionalApiController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, headers = "Accept=application/json")
     public List<ProfissionalResponse> listar(@RequestParam(required = false) String especialidade) {
         List<ProfissionalSaude> resultado = especialidade == null
-            ? profissionais.listar() : profissionais.listarPorEspecialidade(especialidade);
+            ? profissionais.listar()
+            : profissionais.listarPorEspecialidade(especialidade);
         return resultado.stream().map(ProfissionalResponse::from).toList();
     }
 

@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface ProfissionalSaudeRepository extends JpaRepository<ProfissionalSaude, Long> {
     boolean existsByRegistroProfissional(String registroProfissional);
     boolean existsByRegistroProfissionalAndIdNot(String registroProfissional, Long id);
-    List<ProfissionalSaude> findByEspecialidadeContainingIgnoreCaseOrderByNome(String especialidade);
+    List<ProfissionalSaude> findByEspecialidadeIgnoreCaseOrderByNomeAsc(String especialidade);
 
     @Lock(LockModeType.PESSIMISTIC_WRITE)
     @Query("select p from ProfissionalSaude p where p.id = :id")

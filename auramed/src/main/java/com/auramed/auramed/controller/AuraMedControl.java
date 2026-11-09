@@ -69,7 +69,7 @@ public class AuraMedControl {
 
         return "quartos";
     }
-    @GetMapping("/profissionais")
+    @GetMapping(value = "/profissionais", produces = MediaType.TEXT_HTML_VALUE)
     public String profissionaisPage(){
 
         return "profissionais";
