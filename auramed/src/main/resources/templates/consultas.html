@@ -117,56 +117,52 @@
                 </div>
                 <span class="today-badge">Dados de demonstração</span>
             </section>
-            <section class="metrics-grid resumo-grid" aria-label="Resumo dos dados de demonstração">
+            <section class="metrics-grid resumo-grid" aria-label="Resumo das consultas">
                 <article class="metric-card metric-card--blue">
                     <div class="metric-card__content">
                         <span>Agendadas</span>
-                        <strong>1</strong>
+                        <strong th:text="${#lists.size(consultas.?[status.name() == 'AGENDADA' or status.name() == 'CONFIRMADA'])}">0</strong>
                         <small>Aguardando atendimento</small>
                     </div>
                 </article>
                 <article class="metric-card metric-card--green">
                     <div class="metric-card__content">
-                        <span>Realizadas</span>
-                        <strong>1</strong>
+                        <span>Concluídas</span>
+                        <strong th:text="${#lists.size(consultas.?[status.name() == 'CONCLUIDA'])}">0</strong>
                         <small>Atendimentos concluídos</small>
                     </div>
                 </article>
                 <article class="metric-card metric-card--orange">
                     <div class="metric-card__content">
                         <span>Canceladas</span>
-                        <strong>1</strong>
-                        <small>Agendamentos cancelados</small>
+                        <strong th:text="${#lists.size(consultas.?[status.name() == 'CANCELADA' or status.name() == 'NAO_COMPARECEU'])}">0</strong>
+                        <small>Canceladas ou não compareceu</small>
                     </div>
                 </article>
             </section>
             <details class="cadastro-panel" id="cadastro">
                 <summary>Nova consulta<span aria-hidden="true">＋</span>
                 </summary>
-                <form class="cadastro-form" aria-describedby="aviso-cadastro">
-                    <p id="aviso-cadastro" class="form-aviso">Formulário demonstrativo. Os dados preenchidos não são salvos.</p>
+                <form class="cadastro-form" id="form-consulta">
+                    <p id="mensagem-form" class="form-aviso" role="status" aria-live="polite">Preencha os dados para agendar uma consulta.</p>
                     <div class="campos-grid">
                         <div class="campo">
                             <label for="pacienteId">Paciente</label>
                             <select id="pacienteId" name="pacienteId" required>
                                 <option value="">Selecione</option>
-                                <option value="Marina Alves">Marina Alves</option>
-                                <option value="Pedro Santos">Pedro Santos</option>
-                                <option value="Luiza Ferreira">Luiza Ferreira</option>
+                                <option th:each="p : ${pacientes}" th:value="${p.id}" th:text="${p.nome}">Paciente</option>
                             </select>
                         </div>
                         <div class="campo">
                             <label for="profissionalId">Profissional responsável</label>
                             <select id="profissionalId" name="profissionalId" required>
                                 <option value="">Selecione</option>
-                                <option value="Dra. Ana Helena — Cardiologia">Dra. Ana Helena — Cardiologia</option>
-                                <option value="Dr. Rafael Lima — Clínica médica">Dr. Rafael Lima — Clínica médica</option>
-                                <option value="Dra. Beatriz Costa — Pediatria">Dra. Beatriz Costa — Pediatria</option>
+                                <option th:each="pr : ${profissionais}" th:value="${pr.id}" th:text="${pr.nome + ' — ' + pr.especialidade}">Profissional</option>
                             </select>
                         </div>
                         <div class="campo">
                             <label for="dataHora">Data e horário</label>
-                            <input id="dataHora" name="dataHora" type="datetime-local"  required>
+                            <input id="dataHora" name="dataHora" type="datetime-local" required>
                         </div>
                         <div class="campo">
                             <label for="motivo">Motivo da consulta</label>
@@ -175,7 +171,7 @@
                     </div>
                     <div class="form-footer">
                         <span>Preencha todos os campos obrigatórios.</span>
-                        <button type="submit" disabled>Agendar consulta</button>
+                        <button type="submit">Agendar consulta</button>
                     </div>
                 </form>
             </details>
@@ -185,133 +181,100 @@
                         <p class="eyebrow">Consultas</p>
                         <h2 id="lista-title">Agenda de atendimentos</h2>
                     </div>
-                    <span class="appointment-count">3 consultas</span>
+                    <span class="appointment-count" th:text="${#lists.size(consultas) + (#lists.size(consultas) == 1 ? ' consulta' : ' consultas')}">0 consultas</span>
                 </header>
+                <p class="form-aviso" th:if="${#lists.isEmpty(consultas)}">Nenhuma consulta agendada até o momento.</p>
                 <div class="registro-lista">
-                    <details class="registro-card">
+                    <details class="registro-card" th:each="c : ${consultas}">
                         <summary class="registro-resumo">
-                            <time class="consulta-horario" datetime="2026-10-05T09:00">
-                                <strong>09:00</strong>
-                                <span>05/10/2026</span>
+                            <time class="consulta-horario" th:datetime="${c.dataHora}">
+                                <strong th:text="${#temporals.format(c.dataHora, 'HH:mm')}">09:00</strong>
+                                <span th:text="${#temporals.format(c.dataHora, 'dd/MM/yyyy')}">05/10/2026</span>
                             </time>
                             <span class="registro-identificacao">
-                                <strong>Marina Alves</strong>
-                                <span>Dra. Ana Helena · Cardiologia</span>
+                                <strong th:text="${c.paciente.nome}">Paciente</strong>
+                                <span th:text="${c.profissional.nome + ' · ' + c.profissional.especialidade}">Profissional</span>
                             </span>
-                            <span class="consulta-status consulta-status--agendada">Agendada</span>
+                            <span class="consulta-status" th:classappend="${'consulta-status--' + #strings.toLowerCase(c.status.name())}" th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(c.status.name(), '_', ' ')))}">Agendada</span>
                             <span class="seta" aria-hidden="true">⌄</span>
                         </summary>
                         <dl class="registro-dados">
                             <div>
                                 <dt>Paciente</dt>
-                                <dd>Marina Alves</dd>
+                                <dd th:text="${c.paciente.nome}">Paciente</dd>
                             </div>
                             <div>
                                 <dt>Profissional responsável</dt>
-                                <dd>Dra. Ana Helena</dd>
+                                <dd th:text="${c.profissional.nome}">Profissional</dd>
                             </div>
                             <div>
                                 <dt>Data e horário</dt>
-                                <dd>05/10/2026 às 09:00</dd>
+                                <dd th:text="${#temporals.format(c.dataHora, 'dd/MM/yyyy') + ' às ' + #temporals.format(c.dataHora, 'HH:mm')}">05/10/2026 às 09:00</dd>
                             </div>
                             <div>
                                 <dt>Status</dt>
-                                <dd>Agendada</dd>
+                                <dd th:text="${#strings.capitalize(#strings.toLowerCase(#strings.replace(c.status.name(), '_', ' ')))}">Agendada</dd>
                             </div>
                             <div>
                                 <dt>Motivo da consulta</dt>
-                                <dd>Avaliação cardiológica</dd>
+                                <dd th:text="${c.motivo}">Motivo</dd>
                             </div>
                             <div>
                                 <dt>Observações médicas</dt>
-                                <dd>Aguardando atendimento.</dd>
+                                <dd th:text="${c.observacoesMedicas != null and !#strings.isEmpty(c.observacoesMedicas)} ? ${c.observacoesMedicas} : 'Sem observações médicas.'">Sem observações médicas.</dd>
                             </div>
                         </dl>
-                    </details>
-                    <details class="registro-card">
-                        <summary class="registro-resumo">
-                            <time class="consulta-horario" datetime="2026-10-05T10:30">
-                                <strong>10:30</strong>
-                                <span>05/10/2026</span>
-                            </time>
-                            <span class="registro-identificacao">
-                                <strong>Pedro Santos</strong>
-                                <span>Dr. Rafael Lima · Clínica médica</span>
-                            </span>
-                            <span class="consulta-status consulta-status--realizada">Realizada</span>
-                            <span class="seta" aria-hidden="true">⌄</span>
-                        </summary>
-                        <dl class="registro-dados">
-                            <div>
-                                <dt>Paciente</dt>
-                                <dd>Pedro Santos</dd>
-                            </div>
-                            <div>
-                                <dt>Profissional responsável</dt>
-                                <dd>Dr. Rafael Lima</dd>
-                            </div>
-                            <div>
-                                <dt>Data e horário</dt>
-                                <dd>05/10/2026 às 10:30</dd>
-                            </div>
-                            <div>
-                                <dt>Status</dt>
-                                <dd>Realizada</dd>
-                            </div>
-                            <div>
-                                <dt>Motivo da consulta</dt>
-                                <dd>Consulta de rotina</dd>
-                            </div>
-                            <div>
-                                <dt>Observações médicas</dt>
-                                <dd>Consulta de rotina realizada. Retorno em 30 dias.</dd>
-                            </div>
-                        </dl>
-                    </details>
-                    <details class="registro-card">
-                        <summary class="registro-resumo">
-                            <time class="consulta-horario" datetime="2026-10-06T14:00">
-                                <strong>14:00</strong>
-                                <span>06/10/2026</span>
-                            </time>
-                            <span class="registro-identificacao">
-                                <strong>Luiza Ferreira</strong>
-                                <span>Dra. Beatriz Costa · Pediatria</span>
-                            </span>
-                            <span class="consulta-status consulta-status--cancelada">Cancelada</span>
-                            <span class="seta" aria-hidden="true">⌄</span>
-                        </summary>
-                        <dl class="registro-dados">
-                            <div>
-                                <dt>Paciente</dt>
-                                <dd>Luiza Ferreira</dd>
-                            </div>
-                            <div>
-                                <dt>Profissional responsável</dt>
-                                <dd>Dra. Beatriz Costa</dd>
-                            </div>
-                            <div>
-                                <dt>Data e horário</dt>
-                                <dd>06/10/2026 às 14:00</dd>
-                            </div>
-                            <div>
-                                <dt>Status</dt>
-                                <dd>Cancelada</dd>
-                            </div>
-                            <div>
-                                <dt>Motivo da consulta</dt>
-                                <dd>Acompanhamento pediátrico</dd>
-                            </div>
-                            <div>
-                                <dt>Observações médicas</dt>
-                                <dd>Sem observações médicas.</dd>
-                            </div>
-                        </dl>
+                        <div class="registro-acoes" th:if="${c.status.name() == 'AGENDADA' or c.status.name() == 'CONFIRMADA'}">
+                            <button type="button" class="btn-cancelar" th:attr="data-id=${c.id}">Cancelar consulta</button>
+                        </div>
                     </details>
                 </div>
             </section>
         </main>
     </div>
 </div>
+<script>
+    (function () {
+        var form = document.getElementById('form-consulta');
+        var msg = document.getElementById('mensagem-form');
+
+        function erroDe(resp) {
+            return resp.json().then(function (j) { return j.erro; }).catch(function () { return null; })
+                .then(function (m) { return m || 'Não foi possível concluir a operação.'; });
+        }
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            var corpo = {
+                pacienteId: Number(form.pacienteId.value),
+                profissionalId: Number(form.profissionalId.value),
+                dataHora: form.dataHora.value,
+                motivo: form.motivo.value
+            };
+            fetch('/consultas', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                body: JSON.stringify(corpo)
+            }).then(function (resp) {
+                if (resp.ok) { window.location.reload(); return; }
+                return erroDe(resp).then(function (m) { msg.textContent = m; });
+            }).catch(function () { msg.textContent = 'Falha de conexão com o servidor.'; });
+        });
+
+        document.querySelectorAll('.btn-cancelar').forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                if (!confirm('Cancelar esta consulta?')) return;
+                fetch('/consultas/' + btn.dataset.id + '/status', {
+                    method: 'PATCH',
+                    headers: {'Content-Type': 'application/json', 'Accept': 'application/json'},
+                    body: JSON.stringify({status: 'CANCELADA'})
+                }).then(function (resp) {
+                    if (resp.ok) { window.location.reload(); return; }
+                    return erroDe(resp).then(function (m) { alert(m); });
+                });
+            });
+        });
+    })();
+</script>
 </body>
 </html>

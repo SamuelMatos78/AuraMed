@@ -6,6 +6,9 @@ import java.time.LocalDateTime;
 import com.auramed.auramed.model.Consulta;
 import com.auramed.auramed.model.Internacao;
 import com.auramed.auramed.model.Paciente;
+import com.auramed.auramed.model.ProfissionalSaude;
+import com.auramed.auramed.model.Quarto;
+import com.auramed.auramed.model.SituacaoQuarto;
 import com.auramed.auramed.model.StatusConsulta;
 
 public final class ApiDtos {
@@ -36,33 +39,6 @@ public final class ApiDtos {
         static PacienteResponse from(Paciente paciente) {
             return new PacienteResponse(paciente.getId(), paciente.getNome(), paciente.getCpf(),
                 paciente.getDataNascimento(), paciente.getTelefone(), paciente.getEndereco(), paciente.getEmail());
-        }
-    }
-
-    public record ProfissionalRequest(
-        String nome,
-        String registroProfissional,
-        String especialidade,
-        String telefone,
-        String email
-    ) {
-        ProfissionalSaude toModel() {
-            return new ProfissionalSaude(nome, registroProfissional, especialidade, telefone, email);
-        }
-    }
-
-    public record ProfissionalResponse(
-        Long id,
-        String nome,
-        String registroProfissional,
-        String especialidade,
-        String telefone,
-        String email
-    ) {
-        static ProfissionalResponse from(ProfissionalSaude profissional) {
-            return new ProfissionalResponse(profissional.getId(), profissional.getNome(),
-                profissional.getRegistroProfissional(), profissional.getEspecialidade(),
-                profissional.getTelefone(), profissional.getEmail());
         }
     }
 
@@ -117,6 +93,53 @@ public final class ApiDtos {
                 internacao.getProfissional().getId(), internacao.getProfissional().getNome(),
                 internacao.getQuarto().getId(), internacao.getQuarto().getNumero(), internacao.getDataEntrada(),
                 internacao.getDataPrevistaAlta(), internacao.getDataAlta(), internacao.getObservacoes());
+        }
+    }
+
+    public record ProfissionalRequest(
+        String nome,
+        String registroProfissional,
+        String especialidade,
+        String telefone,
+        String email
+    ) {
+        ProfissionalSaude toModel() {
+            return new ProfissionalSaude(nome, registroProfissional, especialidade, telefone, email);
+        }
+    }
+
+    public record ProfissionalResponse(
+        Long id,
+        String nome,
+        String registroProfissional,
+        String especialidade,
+        String telefone,
+        String email
+    ) {
+        static ProfissionalResponse from(ProfissionalSaude profissional) {
+            return new ProfissionalResponse(profissional.getId(), profissional.getNome(),
+                profissional.getRegistroProfissional(), profissional.getEspecialidade(),
+                profissional.getTelefone(), profissional.getEmail());
+        }
+    }
+
+    public record QuartoRequest(String numero, Integer andar, Integer capacidadeMaxima) {
+        Quarto toModel() {
+            return new Quarto(numero, andar, capacidadeMaxima);
+        }
+    }
+
+    public record QuartoResponse(
+        Long id,
+        String numero,
+        Integer andar,
+        Integer capacidadeMaxima,
+        long vagasDisponiveis,
+        SituacaoQuarto situacao
+    ) {
+        static QuartoResponse from(Quarto quarto, long vagasDisponiveis) {
+            return new QuartoResponse(quarto.getId(), quarto.getNumero(), quarto.getAndar(),
+                quarto.getCapacidadeMaxima(), vagasDisponiveis, quarto.getSituacao());
         }
     }
 
