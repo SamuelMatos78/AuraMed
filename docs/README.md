@@ -16,7 +16,7 @@ São 12 cartões: seis classes de domínio e seis serviços. As responsabilidade
 - [PDF](Diagrama_Classes_AuraMed.pdf).
 - [SVG vetorial](Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
 
-O diagrama representa Paciente, ProfissionalSaude, Consulta, Internacao, Quarto, HistoricoMedico e as duas enumerações. Inclui atributos, associações navegáveis e multiplicidades. No SVG e no PDF, alguns métodos de acesso são apresentados como exemplos; os demais getters, setters e construtores foram omitidos para facilitar a leitura. A fonte Mermaid concentra-se nos atributos e associações.
+O diagrama representa Paciente, ProfissionalSaude, Consulta, Internacao, Quarto, HistoricoMedico e as duas enumerações. Inclui atributos, associações navegáveis e multiplicidades. No SVG e no PDF, alguns métodos de acesso são apresentados como exemplos; os demais getters, setters e construtores foram omitidos para facilitar a leitura. A versão em Markdown mostra só os atributos e as ligações.
 
 HistoricoMedico é um record montado pelo serviço, sem tabela própria. As consultas do histórico têm status REALIZADA; as internações incluem registros com e sem alta. Serviços e repositórios são descritos nos cartões CRC. A classe vazia User e os DTOs auxiliares não fazem parte deste diagrama de domínio.
 
