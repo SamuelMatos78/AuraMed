@@ -12,7 +12,7 @@ São 12 cartões: seis classes de domínio e seis serviços. As responsabilidade
 
 ## Diagrama de classes
 
-- [Versão colorida no GitHub](Diagrama_Classes_AuraMed.md), a mais fácil de ver.
+- [Versão colorida no GitHub](Diagrama_Classes_AuraMed.md), a mais fácil de ver. Ela é gerada pelo código: depois de mudar uma classe, rode `python3 scripts/gerar_diagrama_classes.py`.
 - [PDF](Diagrama_Classes_AuraMed.pdf).
 - [SVG vetorial](Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
 
