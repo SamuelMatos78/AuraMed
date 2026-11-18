@@ -19,6 +19,10 @@ O diagrama representa Paciente, ProfissionalSaude, Consulta, Internacao, Quarto,
 
 HistoricoMedico é um record montado pelo serviço, sem tabela própria. As consultas do histórico têm status REALIZADA; as internações incluem registros com e sem alta. Serviços e repositórios são descritos nos cartões CRC. A classe vazia User e os DTOs auxiliares não fazem parte deste diagrama de domínio.
 
+## Diagramas de arquitetura e fluxos
+
+- [Diagramas_AuraMed.md](Diagramas_AuraMed.md): arquitetura em camadas, agendamento de consulta, ciclo de vida da consulta e internação/alta, em Mermaid.
+
 ## Páginas em HTML e CSS
 
 - [Profissionais](../auramed/src/main/resources/templates/profissionais.html) e [CSS](../auramed/src/main/resources/static/css/profissionais.css).

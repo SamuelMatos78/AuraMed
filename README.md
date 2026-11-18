@@ -31,6 +31,15 @@ http://localhost:8081
 
 Este projeto possui finalidade exclusivamente acadêmica e foi desenvolvido de acordo com os requisitos e etapas definidos para o trabalho da disciplina.
 
+## Diagramas
+
+Arquitetura em camadas, agendamento de consulta, ciclo de vida da consulta e internação estão em [`docs/Diagramas_AuraMed.md`](docs/Diagramas_AuraMed.md). O diagrama de classes está em [`docs/Diagrama_Classes_AuraMed.svg`](docs/Diagrama_Classes_AuraMed.svg).
+
+```mermaid
+flowchart LR
+    U([Cliente]) --> C[Controllers] --> S[Serviços] --> R[Repositories] --> DB[(SQL Server)]
+```
+
 ## Modelo e serviços
 
 O projeto usa entidades JPA para pacientes, profissionais da saúde, consultas, internações e quartos. Os serviços validam cadastros, impedem duas consultas agendadas para o mesmo profissional e horário, controlam vagas e altas sob transação e consultam o histórico médico do paciente. O histórico é calculado a partir das consultas realizadas e das internações, sem duplicar registros em outra tabela.
