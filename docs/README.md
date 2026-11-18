@@ -15,7 +15,6 @@ São 12 cartões: seis classes de domínio e seis serviços. As responsabilidade
 - [Versão colorida no GitHub](Diagrama_Classes_AuraMed.md), a mais fácil de ver.
 - [PDF](Diagrama_Classes_AuraMed.pdf).
 - [SVG vetorial](Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
-- [Fonte Mermaid](Diagrama_Classes_AuraMed.mmd).
 
 O diagrama representa Paciente, ProfissionalSaude, Consulta, Internacao, Quarto, HistoricoMedico e as duas enumerações. Inclui atributos, associações navegáveis e multiplicidades. No SVG e no PDF, alguns métodos de acesso são apresentados como exemplos; os demais getters, setters e construtores foram omitidos para facilitar a leitura. A fonte Mermaid concentra-se nos atributos e associações.
 
