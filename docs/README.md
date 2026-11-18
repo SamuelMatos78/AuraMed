@@ -6,11 +6,13 @@ Integrantes: Samuel Oliveira Matos, Christiano Gonçalves, Nicolas Kiffer e Lari
 
 - [Documento editável](Cartoes_CRC_AuraMed.docx), preenchido a partir do modelo fornecido.
 - [Versão para leitura e entrega](Cartoes_CRC_AuraMed.pdf).
+- [Versão rápida em texto](Cartoes_CRC_AuraMed.md), em tabelas.
 
 São 12 cartões: seis classes de domínio e seis serviços. As responsabilidades refletem o código Java existente, incluindo validações, controle de horários, capacidade dos quartos e histórico derivado dos atendimentos. As colaborações incluem os participantes de cada caso de uso; algumas referências são feitas por classes que utilizam o modelo.
 
 ## Diagrama de classes
 
+- [Versão colorida no GitHub](Diagrama_Classes_AuraMed.md), a mais fácil de ver.
 - [PDF](Diagrama_Classes_AuraMed.pdf).
 - [SVG vetorial](Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
 - [Fonte Mermaid](Diagrama_Classes_AuraMed.mmd).
