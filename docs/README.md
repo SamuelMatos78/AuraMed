@@ -2,10 +2,12 @@
 
 Integrantes: Samuel Oliveira Matos, Christiano Gonçalves, Nicolas Kiffer e Larissa Finelli.
 
+Os arquivos para entrega (PDF, SVG e DOCX) ficam na pasta [`entrega`](entrega/). Os `.md` são para ler direto no GitHub.
+
 ## Cartões CRC
 
-- [Documento editável](Cartoes_CRC_AuraMed.docx), preenchido a partir do modelo fornecido.
-- [Versão para leitura e entrega](Cartoes_CRC_AuraMed.pdf).
+- [Documento editável](entrega/Cartoes_CRC_AuraMed.docx), preenchido a partir do modelo fornecido.
+- [Versão para leitura e entrega](entrega/Cartoes_CRC_AuraMed.pdf).
 - [Versão rápida em texto](Cartoes_CRC_AuraMed.md), em tabelas.
 
 São 12 cartões: seis classes de domínio e seis serviços. As responsabilidades refletem o código Java existente, incluindo validações, controle de horários, capacidade dos quartos e histórico derivado dos atendimentos. As colaborações incluem os participantes de cada caso de uso; algumas referências são feitas por classes que utilizam o modelo.
@@ -13,8 +15,8 @@ São 12 cartões: seis classes de domínio e seis serviços. As responsabilidade
 ## Diagrama de classes
 
 - [Versão colorida no GitHub](Diagrama_Classes_AuraMed.md), a mais fácil de ver. Ela é gerada pelo código: depois de mudar uma classe, rode `python3 scripts/gerar_diagrama_classes.py`.
-- [PDF](Diagrama_Classes_AuraMed.pdf).
-- [SVG vetorial](Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
+- [PDF](entrega/Diagrama_Classes_AuraMed.pdf).
+- [SVG vetorial](entrega/Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
 
 O diagrama representa Paciente, ProfissionalSaude, Consulta, Internacao, Quarto, HistoricoMedico e as duas enumerações. Inclui atributos, associações navegáveis e multiplicidades. No SVG e no PDF, alguns métodos de acesso são apresentados como exemplos; os demais getters, setters e construtores foram omitidos para facilitar a leitura. A versão em Markdown mostra só os atributos e as ligações.
 
