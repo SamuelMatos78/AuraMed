@@ -2,7 +2,7 @@
 
 Aqui estão os desenhos que explicam como o sistema funciona. O GitHub mostra todos direto na página.
 
-Quer ver as classes? Veja o [diagrama de classes](Diagrama_Classes_AuraMed.svg).
+Quer ver as classes? Veja o [diagrama de classes](Diagrama_Classes_AuraMed.md). As responsabilidades de cada uma estão nos [cartões CRC](Cartoes_CRC_AuraMed.md).
 
 **Cores:** 🟦 azul = telas e pessoas · 🟩 verde = regras do sistema · 🟨 amarelo = banco de dados · 🟥 vermelho = erro
 

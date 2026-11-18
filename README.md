@@ -33,7 +33,7 @@ Este projeto possui finalidade exclusivamente acadêmica e foi desenvolvido de a
 
 ## Diagramas
 
-Quer entender o sistema rapidinho? Veja os desenhos em [`docs/Diagramas_AuraMed.md`](docs/Diagramas_AuraMed.md): como ele é organizado, como marcar consulta, internar e dar alta. O [diagrama de classes](docs/Diagrama_Classes_AuraMed.svg) está ali ao lado.
+Quer entender o sistema rapidinho? Veja os desenhos em [`docs/Diagramas_AuraMed.md`](docs/Diagramas_AuraMed.md): como ele é organizado, como marcar consulta, internar e dar alta. Tem também o [diagrama de classes](docs/Diagrama_Classes_AuraMed.md) e os [cartões CRC](docs/Cartoes_CRC_AuraMed.md).
 
 Resumo em uma linha:
 
