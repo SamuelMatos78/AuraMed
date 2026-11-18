@@ -1,38 +1,25 @@
-# Entregas — AuraMed
+# Documentos do AuraMed
 
-Integrantes: Samuel Oliveira Matos, Christiano Gonçalves, Nicolas Kiffer e Larissa Finelli.
+Grupo: Samuel Oliveira Matos, Christiano Gonçalves, Nicolas Kiffer e Larissa Finelli.
 
-Os arquivos para entrega (PDF, SVG e DOCX) ficam na pasta [`entrega`](entrega/). Os `.md` são para ler direto no GitHub.
+Os `.md` são para ler direto no GitHub. PDF, SVG e DOCX para entrega ficam na pasta [`entrega`](entrega/).
 
-## Cartões CRC
+## Para ler
 
-- [Documento editável](entrega/Cartoes_CRC_AuraMed.docx), preenchido a partir do modelo fornecido.
-- [Versão para leitura e entrega](entrega/Cartoes_CRC_AuraMed.pdf).
-- [Versão rápida em texto](Cartoes_CRC_AuraMed.md), em tabelas.
+- [Diagramas e fluxogramas](Diagramas_AuraMed.md): como o sistema funciona.
+- [Diagrama de classes](Diagrama_Classes_AuraMed.md): as classes e as ligações entre elas. É gerado pelo código com `python3 scripts/gerar_diagrama_classes.py`.
+- [Cartões CRC](Cartoes_CRC_AuraMed.md): o que cada classe faz e com quem trabalha.
 
-São 12 cartões: seis classes de domínio e seis serviços. As responsabilidades refletem o código Java existente, incluindo validações, controle de horários, capacidade dos quartos e histórico derivado dos atendimentos. As colaborações incluem os participantes de cada caso de uso; algumas referências são feitas por classes que utilizam o modelo.
+## Para entregar
 
-## Diagrama de classes
+- Cartões CRC: [DOCX editável](entrega/Cartoes_CRC_AuraMed.docx) e [PDF](entrega/Cartoes_CRC_AuraMed.pdf).
+- Diagrama de classes: [PDF](entrega/Diagrama_Classes_AuraMed.pdf) e [SVG](entrega/Diagrama_Classes_AuraMed.svg).
 
-- [Versão colorida no GitHub](Diagrama_Classes_AuraMed.md), a mais fácil de ver. Ela é gerada pelo código: depois de mudar uma classe, rode `python3 scripts/gerar_diagrama_classes.py`.
-- [PDF](entrega/Diagrama_Classes_AuraMed.pdf).
-- [SVG vetorial](entrega/Diagrama_Classes_AuraMed.svg), que pode ser aberto no navegador.
+## Telas de exemplo
 
-O diagrama representa Paciente, ProfissionalSaude, Consulta, Internacao, Quarto, HistoricoMedico e as duas enumerações. Inclui atributos, associações navegáveis e multiplicidades. No SVG e no PDF, alguns métodos de acesso são apresentados como exemplos; os demais getters, setters e construtores foram omitidos para facilitar a leitura. A versão em Markdown mostra só os atributos e as ligações.
+São só protótipos em HTML e CSS. Abra no navegador para ver.
 
-HistoricoMedico é um record montado pelo serviço, sem tabela própria. As consultas do histórico têm status REALIZADA; as internações incluem registros com e sem alta. Serviços e repositórios são descritos nos cartões CRC. A classe vazia User e os DTOs auxiliares não fazem parte deste diagrama de domínio.
+- [Profissionais](../auramed/src/main/resources/templates/profissionais.html)
+- [Consultas](../auramed/src/main/resources/templates/consultas.html)
 
-## Diagramas de arquitetura e fluxos
-
-- [Diagramas_AuraMed.md](Diagramas_AuraMed.md): desenhos coloridos e fluxogramas que mostram como o sistema funciona, em linguagem simples.
-
-## Páginas em HTML e CSS
-
-- [Profissionais](../auramed/src/main/resources/templates/profissionais.html) e [CSS](../auramed/src/main/resources/static/css/profissionais.css).
-- [Consultas](../auramed/src/main/resources/templates/consultas.html) e [CSS](../auramed/src/main/resources/static/css/consultas.css).
-
-Abra os arquivos HTML diretamente no navegador para visualizar. As duas páginas reutilizam `static/css/style.css`, com caminhos relativos para permitir a visualização local. Os links das páginas já existentes mantêm os atributos Thymeleaf do projeto.
-
-As telas apresentam dados fictícios, resumos, detalhes expansíveis e formulários demonstrativos. Os elementos `details` e `summary` permitem abrir os formulários e os dados sem JavaScript. Os botões de envio estão desabilitados porque não há gravação de dados neste protótipo.
-
-Não foram criadas rotas Java para as novas páginas nem alterados serviços, repositórios ou banco de dados. Para uma futura integração ao Spring, será necessário fornecer as rotas, as coleções do modelo e substituir os dados demonstrativos.
+Elas usam dados de mentira e os botões de enviar estão desligados. Ainda não têm rotas em Java nem ligação com o banco.

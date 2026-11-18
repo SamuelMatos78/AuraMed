@@ -1,41 +1,46 @@
-# Projeto Acadêmico — Sistema Web
+# AuraMed
 
-Projeto desenvolvido como trabalho acadêmico para a disciplina de **PROGRAMAÇÃO MODULAR** da **PUC Minas**.
+Sistema web para cuidar de **pacientes, consultas e internações** de um hospital.
 
-O objetivo é aplicar, de forma prática, conceitos de desenvolvimento de software e desenvolvimento web abordados durante a disciplina.
+Trabalho da disciplina de Programação Modular, na PUC Minas.
 
-## Tecnologias
+## O que ele faz
 
-* Java
-* Spring Boot
-* Thymeleaf
-* HTML
-* CSS
-* Maven
+- Cadastra pacientes e profissionais da saúde.
+- Marca consultas, sem deixar dois horários iguais para o mesmo profissional.
+- Interna pacientes só se o quarto tiver vaga, e registra a alta.
+- Mostra o histórico de cada paciente.
 
-## Execução
+## Feito com
 
-No diretório `auramed`, execute:
+Java, Spring Boot, Thymeleaf, HTML, CSS e Maven.
+
+## Como rodar
+
+Na pasta `auramed`:
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-A aplicação estará disponível em:
+Depois abra `http://localhost:8081`.
 
-```text
-http://localhost:8081
+Só para conferir se o código compila (sem banco de dados):
+
+```bash
+cd auramed
+./mvnw -DskipTests compile
 ```
 
-## Contexto acadêmico
+## Banco de dados
 
-Este projeto possui finalidade exclusivamente acadêmica e foi desenvolvido de acordo com os requisitos e etapas definidos para o trabalho da disciplina.
+Usamos SQL Server. A estrutura está em `auramed/sql/schema.sql`, mas ela **não roda sozinha**. Falta configurar a conexão antes de usar o banco.
 
-## Diagramas
+## Como funciona, em desenhos
 
-Quer entender o sistema rapidinho? Veja os desenhos em [`docs/Diagramas_AuraMed.md`](docs/Diagramas_AuraMed.md): como ele é organizado, como marcar consulta, internar e dar alta. Tem também o [diagrama de classes](docs/Diagrama_Classes_AuraMed.md) e os [cartões CRC](docs/Cartoes_CRC_AuraMed.md).
-
-Resumo em uma linha:
+- [Diagramas e fluxogramas](docs/Diagramas_AuraMed.md): como o sistema é organizado, marcar consulta, internar e dar alta.
+- [Diagrama de classes](docs/Diagrama_Classes_AuraMed.md): as classes e como se ligam.
+- [Cartões CRC](docs/Cartoes_CRC_AuraMed.md): o que cada classe faz.
 
 ```mermaid
 flowchart LR
@@ -46,17 +51,4 @@ flowchart LR
     class A,B tela
     class C,D regra
     class E banco
-```
-
-## Modelo e serviços
-
-O projeto usa entidades JPA para pacientes, profissionais da saúde, consultas, internações e quartos. Os serviços validam cadastros, impedem duas consultas agendadas para o mesmo profissional e horário, controlam vagas e altas sob transação e consultam o histórico médico do paciente. O histórico é calculado a partir das consultas realizadas e das internações, sem duplicar registros em outra tabela.
-
-A escolha prevista para persistência é SQL Server: os dados têm relações e regras de integridade claras (paciente, profissional, consulta, internação e quarto), que podem ser protegidas por chaves estrangeiras e índices únicos. O driver já consta no `pom.xml`. O esquema correspondente está em `auramed/sql/schema.sql`; ele não é executado automaticamente. A conexão com o banco ainda precisa ser configurada antes de iniciar a aplicação com a camada JPA.
-
-Para validar apenas o código Java, sem banco de dados:
-
-```bash
-cd auramed
-./mvnw -DskipTests compile
 ```
