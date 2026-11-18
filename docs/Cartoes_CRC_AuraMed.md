@@ -31,4 +31,4 @@ O AuraMed cuida de pacientes, profissionais, consultas, internações, quartos e
 - Um quarto fica **OCUPADO** só quando lota. Com vaga sobrando, continua **DISPONIVEL**.
 - Todos os serviços usam a classe `Validacao` para conferir os dados.
 
-Versões para entrega: [PDF](Cartoes_CRC_AuraMed.pdf) e [DOCX](Cartoes_CRC_AuraMed.docx).
+Versões para entrega: [PDF](entrega/Cartoes_CRC_AuraMed.pdf) e [DOCX](entrega/Cartoes_CRC_AuraMed.docx).

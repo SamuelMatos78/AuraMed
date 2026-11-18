@@ -94,4 +94,4 @@ class StatusConsulta:::opcoes
 
 Este diagrama é gerado a partir do código. Depois de mudar uma classe em `model/`, rode `python3 scripts/gerar_diagrama_classes.py` na raiz do projeto.
 
-Versões para entrega: [PDF](Diagrama_Classes_AuraMed.pdf) e [SVG](Diagrama_Classes_AuraMed.svg).
+Versões para entrega: [PDF](entrega/Diagrama_Classes_AuraMed.pdf) e [SVG](entrega/Diagrama_Classes_AuraMed.svg).
