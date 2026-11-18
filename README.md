@@ -33,11 +33,19 @@ Este projeto possui finalidade exclusivamente acadêmica e foi desenvolvido de a
 
 ## Diagramas
 
-Arquitetura em camadas, agendamento de consulta, ciclo de vida da consulta e internação estão em [`docs/Diagramas_AuraMed.md`](docs/Diagramas_AuraMed.md). O diagrama de classes está em [`docs/Diagrama_Classes_AuraMed.svg`](docs/Diagrama_Classes_AuraMed.svg).
+Quer entender o sistema rapidinho? Veja os desenhos em [`docs/Diagramas_AuraMed.md`](docs/Diagramas_AuraMed.md): como ele é organizado, como marcar consulta, internar e dar alta. O [diagrama de classes](docs/Diagrama_Classes_AuraMed.svg) está ali ao lado.
+
+Resumo em uma linha:
 
 ```mermaid
 flowchart LR
-    U([Cliente]) --> C[Controllers] --> S[Serviços] --> R[Repositories] --> DB[(SQL Server)]
+    A["Pessoa"] --> B["Controllers"] --> C["Serviços"] --> D["Repositories"] --> E[("Banco")]
+    classDef tela fill:#cfe8ff,stroke:#1d6fb8,color:#000
+    classDef regra fill:#d5f5d5,stroke:#2e8b2e,color:#000
+    classDef banco fill:#fff3b8,stroke:#b8960c,color:#000
+    class A,B tela
+    class C,D regra
+    class E banco
 ```
 
 ## Modelo e serviços

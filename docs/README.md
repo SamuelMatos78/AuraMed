@@ -21,7 +21,7 @@ HistoricoMedico é um record montado pelo serviço, sem tabela própria. As cons
 
 ## Diagramas de arquitetura e fluxos
 
-- [Diagramas_AuraMed.md](Diagramas_AuraMed.md): arquitetura em camadas, agendamento de consulta, ciclo de vida da consulta e internação/alta, em Mermaid.
+- [Diagramas_AuraMed.md](Diagramas_AuraMed.md): desenhos coloridos e fluxogramas que mostram como o sistema funciona, em linguagem simples.
 
 ## Páginas em HTML e CSS
 
